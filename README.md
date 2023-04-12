@@ -4,7 +4,7 @@
 This is a starter repo for a PHP project running on GitPod.<br>
 You can just open the IDE by clicking on:<br>
 <br>
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DHBW-Vilas/php-starter](https://github.com/DHBW-Vilas/21ai2-webeng-II-brokkolipommes))
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DHBW-Vilas/21ai2-webeng-II-brokkolipommes))
 
 # Folders
 
