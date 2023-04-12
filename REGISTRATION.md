@@ -1,9 +1,15 @@
 # project-name
-project-short-description
+BrokkoliPommes
 
 ## Functions
 - [x] ...
-- [ ] ...
+- [ ] User registration
+- [ ] User login
+- [ ] User administration (change name address etc.)
+- [ ] Food order
+- [ ] Food administration (add menu, change prices, etc.)
+- [ ] Rating system for Food
+- [ ] User rights (normal, admin etc.)
 
 ## Technologies
 - ...
@@ -16,5 +22,7 @@ Optional:
 ## Contributors
 | Name | Matrikel number | Github account |
 | --- | --- | --- |
-| name | matrikel no | github account name |
-| name | matrikel no | github account name |
+| Serbay Yavuz | 4064127 | S211245 |
+| Lev Likhanov | matrikel no | github account name |
+| Jan Luca Wolf | matrikel no | github account name |
+| Rafael Simon | matrikel no | github account name |
