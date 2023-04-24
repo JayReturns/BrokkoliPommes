@@ -24,5 +24,5 @@ Optional:
 | --- | --- | --- |
 | Serbay Yavuz | 4064127 | S211245 |
 | Lev Likhanov | matrikel no | github account name |
-| Jan-Luca Wolf | matrikel no | JayReturns |
+| Jan-Luca Wolf | 6088902 | JayReturns |
 | Rafael Simon | 4568447 | Rafael-Simon |
