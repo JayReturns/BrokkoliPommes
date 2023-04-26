@@ -1,7 +1,6 @@
-FROM gitpod/workspace-mysql:latest
+FROM gitpod/workspace-mysql
 
 USER gitpod
 
-# Install debugging for php and netcat
 RUN sudo apt-get update -q \
-    && sudo apt-get install php-xdebug php-dev automake autoconf netcat -y
+    && sudo apt-get install automake autoconf netcat -y
