@@ -55,6 +55,7 @@ vscode:
     - vscjava.vscode-java-pack
     - eamodio.gitlens
     - Angular.ng-template
+    - formulahendry.vscode-mysql
 
 github:
   prebuilds:
