@@ -13,13 +13,13 @@ BrokkoliPommes
 - [ ] users can see their last purchases
 
 
-Optional (at least 2):
+Optional (at least 4):
 - [ ] rating system for articles
-- [ ] registration for different suppliers
-- [ ] suppliers can upload their articles
-- [ ] suppliers can edit their articles
+- [ ] Registration for different suppliers
+- [ ] Suppliers can upload their articles
+- [ ] Suppliers can edit their articles
 - [ ] users can see supplier information in articles
-- [ ] suppliers can see their sells
+- [ ] Suppliers can see their sells
 - [ ] wishlist - (notifying user when there are reduced prices)
 - [ ] images for articles
 
