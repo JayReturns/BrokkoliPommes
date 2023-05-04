@@ -19,11 +19,11 @@ tasks:
     name: Start Backend
   - init: |
       cd client
-      npx -p @angular/cli ng analytics off
+      npx -y -p @angular/cli ng analytics off
       npm install
     command: |
       cd client
-      npx -p @angular/cli ng serve
+      npx -y -p @angular/cli ng serve
     name: Start Frontend
   - name: MySQL 
     command: |
