@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 @Data
 public class UserData {
 
-    private Integer userID;
+    private Integer id;
     @NotBlank
     private String name;
     @NotBlank

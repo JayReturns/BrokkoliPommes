@@ -1,6 +1,7 @@
 package com.github.webeng.BrokkoliPommes.user.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -8,13 +9,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "BP_USER")
 @Getter
+@Setter
 @ToString
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID", updatable = false, nullable = false, unique = true)
-    private Integer userID;
+    @Column(name = "ID", updatable = false, nullable = false, unique = true)
+    private Integer id;
 
     @Column(name = "NAME", nullable = false)
     private String name;
@@ -22,7 +24,6 @@ public class User {
     @Column(name = "MAIL", nullable = false)
     private String mail;
 
-    // TODO Encrypting etc.
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
