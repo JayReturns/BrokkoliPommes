@@ -19,7 +19,7 @@ public class Order implements Serializable {
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
     private String oderID;
 
     @ManyToOne

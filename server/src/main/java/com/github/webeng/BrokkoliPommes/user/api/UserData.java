@@ -2,6 +2,7 @@ package com.github.webeng.BrokkoliPommes.user.api;
 
 import lombok.Data;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -12,6 +13,7 @@ public class UserData {
     @NotBlank
     private String name;
     @NotBlank
+    @Email
     private String mail;
     @NotBlank
     @Size(min =  6)

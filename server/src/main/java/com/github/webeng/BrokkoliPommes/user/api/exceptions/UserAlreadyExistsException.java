@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UserAlreadyExistsException extends IllegalArgumentException {
 
     public UserAlreadyExistsException(int userId) {
-        super("User mit ID %d existiert bereits!".formatted(userId));
+        super(String.format("User mit ID %d existiert bereits!", userId));
+    }
+
+    public UserAlreadyExistsException(String mail) {
+        super(String.format("User mit Mail %s existert bereits", mail));
     }
 
 }
