@@ -41,4 +41,9 @@ public class UserService implements IUserService {
         User fromRepo = optionalUser.get();
         return fromRepo.getPassword().equals(user.getPassword());
     }
+
+    @Override
+    public User getUser(Integer userId) {
+        return userRepository.findById(userId).orElseThrow();
+    }
 }

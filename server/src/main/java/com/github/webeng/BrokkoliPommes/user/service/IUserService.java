@@ -8,4 +8,6 @@ public interface IUserService {
 
     boolean hasValidCredentials(User user);
 
+    User getUser(Integer userId);
+
 }

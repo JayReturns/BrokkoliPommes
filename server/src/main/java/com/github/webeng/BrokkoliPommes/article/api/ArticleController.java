@@ -29,16 +29,21 @@ public class ArticleController {
         return this.articleService.getAllArticlesByCategories(categories);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Article uploadArticle(@RequestBody Article article) {
-        return articleService.createArticle(article);
+    public Article uploadArticle(@RequestBody Article article, @PathVariable Integer userId) {
+        return articleService.createArticle(article, userId);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Article updateArticle(@RequestBody Article article) {
         return articleService.updateArticle(article);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteArticle(@PathVariable Integer id) {
+        articleService.deleteArticle(id);
     }
 
 }

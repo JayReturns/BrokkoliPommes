@@ -10,8 +10,10 @@ public interface IArticleService {
 
     List<Article> getAllArticlesByCategories(List<String> categories);
 
-    Article createArticle(Article newArticle);
+    Article createArticle(Article newArticle, Integer userId);
 
     Article updateArticle(Article article);
+
+    void deleteArticle(Integer articleId);
 
 }
