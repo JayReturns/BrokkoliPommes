@@ -10,7 +10,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -19,12 +19,14 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

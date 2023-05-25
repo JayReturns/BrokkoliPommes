@@ -1,0 +1,74 @@
+<div class="center-content">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>BrokkoliPommes</mat-card-title>
+      <mat-card-subtitle>Anmeldung/Registrierung</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-tab-group>
+
+        <mat-tab label="Anmelden">
+          <form (ngSubmit)="login()" [formGroup]="loginForm">
+
+            <mat-form-field class="full-width">
+              <mat-label>Email</mat-label>
+              <input [email]="true" formControlName="email" matInput placeholder="max@mustermann.de" type="email">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <mat-label>Passwort</mat-label>
+              <input formControlName="password" matInput placeholder="Passwort" type="password">
+              <button (click)="hide = ! hide" mat-icon-button matSuffix>
+                <mat-icon matSuffix>{{hide ? 'vpn_key' : 'vpn_key_off'}}vpn_key</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <button color="primary" mat-button type="submit">Anmelden</button>
+
+          </form>
+        </mat-tab>
+
+
+        <mat-tab label="Registrieren">
+          <form (ngSubmit)="register()" [formGroup]="registrationForm">
+            <mat-form-field class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="max@mustermann.de" [email]="true" type="email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Max Mustermann" type="text" formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Registrieren als</mat-label>
+              <mat-select value="customer" formControlName="isSupplier">
+                <mat-option [value]="false">Kunde</mat-option>
+                <mat-option [value]="true">Lieferant</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" *ngIf="registrationForm.controls.isSupplier.value">
+              <mat-label>Firma</mat-label>
+              <input matInput placeholder="Firma" type="text" formControlName="companyName">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Passwort</mat-label>
+              <input matInput placeholder="Passwort" type="password" formControlName="password" minlength="5">
+              <mat-hint>Mindestens 5 Zeichen</mat-hint>
+              <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Passwort Wiederholen</mat-label>
+              <input matInput placeholder="Passwort wiederholen" type="password" formControlName="repeatPassword">
+              <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <button type="submit" [disabled]="!canLogin && !registrationForm.errors" color="primary" mat-button>Registrieren</button>
+          </form>
+
+        </mat-tab>
+      </mat-tab-group>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>
