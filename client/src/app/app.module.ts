@@ -20,6 +20,7 @@ import {MatListModule} from "@angular/material/list";
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import { LoginComponent } from './components/login/login.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { LoginComponent } from './components/login/login.component';
     MatSidenavModule,
     MatListModule,
     MatGridListModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

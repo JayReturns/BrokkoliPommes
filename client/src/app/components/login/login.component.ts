@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user.model";
 import { sha256 } from "js-sha256";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent {
     companyName: new FormControl('')
   })
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.registrationForm.valueChanges.subscribe(x =>  {
       this.canLogin = this.registrationForm.controls.password.value == this.registrationForm.controls.repeatPassword.value;
     })
@@ -44,6 +45,7 @@ export class LoginComponent {
     }
 
     console.log(user);
+    this.userService.registerUser(user).subscribe(res => console.log(res));
   }
 
   login() {
