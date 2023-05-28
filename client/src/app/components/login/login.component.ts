@@ -3,6 +3,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user.model";
 import { sha256 } from "js-sha256";
 import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -29,7 +32,8 @@ export class LoginComponent {
     companyName: new FormControl('')
   })
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private authService: AuthService, private router: Router,
+              private snackBar: MatSnackBar) {
     this.registrationForm.valueChanges.subscribe(x =>  {
       this.canLogin = this.registrationForm.controls.password.value == this.registrationForm.controls.repeatPassword.value;
     })
@@ -49,12 +53,18 @@ export class LoginComponent {
   }
 
   login() {
-
-    // if (this.email == "admin" && this.password == "admin") {
-    //   this.snackBar.open('Login Successful', '', {duration: 1000})
-    // } else {
-    //   this.snackBar.open('Login error', '', {duration: 1000})
-    // }
+    let user = {
+      mail: this.loginForm.controls.email.value!,
+      password: this.hashPassword(this.loginForm.controls.password.value!)
+    }
+    this.authService.login(user).subscribe(validCredentials => {
+      console.log(`Valid: ${validCredentials}`);
+      if (validCredentials) {
+        this.router.navigate(['dashboard']);
+      } else {
+        this.snackBar.open("Benutzername oder Passwort falsch!", "", {duration: 10000})
+      }
+    });
   }
 
   private hashPassword(pw: string): string {

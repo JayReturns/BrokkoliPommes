@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +13,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {}
 
+  constructor(private authService: AuthService) {
+  }
+
   onCategoryChange(event: any) {
     console.log(event);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

@@ -1,5 +1,6 @@
 package com.github.webeng.BrokkoliPommes.user.api;
 
+import com.github.webeng.BrokkoliPommes.user.domain.User;
 import com.github.webeng.BrokkoliPommes.user.domain.UserFactory;
 import com.github.webeng.BrokkoliPommes.user.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,10 +30,16 @@ public class UserController {
         return userDataFactory.from(userService.createUser(userFactory.from(userData)));
     }
 
-    @Operation(summary = "Log User in")
-    @GetMapping(path = "login")
-    public Boolean isLoggedIn(@RequestBody UserData userData) {
+    @Operation(summary = "Log User in. Returns user on success, null otherwise")
+    @PostMapping(path = "login")
+    public User isLoggedIn(@RequestBody UserData userData) {
         return userService.hasValidCredentials(userFactory.from(userData));
+    }
+
+    @Operation(summary = "Get User details")
+    @GetMapping(path = "{mail}")
+    public User getDetails(@PathVariable String mail) {
+        return userService.getUser(mail);
     }
 
 }

@@ -22,7 +22,7 @@ public class UserService implements IUserService {
         if (Objects.isNull(user.getIsSupplier())) {
             user.setIsSupplier(false);
         }
-        if (userRepository.findByMail(user.getMail()).isPresent()) {
+        if (userRepository.findByMailIgnoreCase(user.getMail()).isPresent()) {
             throw new UserAlreadyExistsException(user.getMail());
         }
         if (!Objects.isNull(user.getId())) {
@@ -34,16 +34,25 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean hasValidCredentials(User user) {
-        Optional<User> optionalUser = userRepository.findByMail(user.getMail());
+    public User hasValidCredentials(User user) {
+        Optional<User> optionalUser = userRepository.findByMailIgnoreCase(user.getMail());
         if (optionalUser.isEmpty())
-            return false;
+            return null;
         User fromRepo = optionalUser.get();
-        return fromRepo.getPassword().equals(user.getPassword());
+        if (fromRepo.getPassword().equals(user.getPassword())) {
+            return fromRepo;
+        } else {
+            return null;
+        }
     }
 
     @Override
     public User getUser(Integer userId) {
         return userRepository.findById(userId).orElseThrow();
+    }
+
+    @Override
+    public User getUser(String mail) {
+        return userRepository.findByMailIgnoreCase(mail).orElseThrow();
     }
 }

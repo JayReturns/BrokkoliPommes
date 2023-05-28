@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {environment} from "../../environments/environment.development";
 import {MessageService} from "./message.service";
-import {catchError} from "rxjs";
+import {catchError, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,14 @@ export class UserService {
       .pipe(
         catchError(this.messageService.handleError<User>('registerUser'))
       )
+  }
+
+  loginUser(user: {mail: string, password: string}) {
+    return this.http.post<User>(`${this.url}/login`, user);
+  }
+
+  getUser(mail: string): Observable<User> {
+    return this.http.get<User>(`${this.url}/${mail}`);
   }
 
 }
