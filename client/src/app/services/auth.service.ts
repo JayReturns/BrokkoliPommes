@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {UserService} from "./user.service";
-import {map, Subject} from "rxjs";
+import {Subject} from "rxjs";
 import {Router} from "@angular/router";
 
 const USER_KEY = "appUser"

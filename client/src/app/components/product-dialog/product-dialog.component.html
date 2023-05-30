@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Artikel anlegen</h2>
+<mat-dialog-content [formGroup]="articleForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Artikelname" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Beschreibung</mat-label>
+    <textarea formControlName="description" matInput placeholder="Beschreibung" [maxLength]="maxDescLength" required #desc></textarea>
+    <mat-hint align="end">{{desc.value.length}}/{{maxDescLength}}</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Kategorie</mat-label>
+    <input matInput formControlName="category" placeholder="Kategorie" required>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always">
+    <mat-label>Preis</mat-label>
+    <input matInput type="number" class="right-align" formControlName="price" min="0.01">
+    <span matTextSuffix>&nbsp;€</span>
+  </mat-form-field>
+
+  <mat-dialog-actions align="end">
+    <button (click)="close()" mat-raised-button>Abbrechen</button>
+    <button (click)="onSubmit()" color="primary" mat-raised-button [disabled]="!articleForm.valid">Anlegen</button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>

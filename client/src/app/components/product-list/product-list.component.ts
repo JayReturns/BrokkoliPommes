@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Article} from "../../models/article.model";
 import {AuthService} from "../../services/auth.service";
 import {ArticleService} from "../../services/article.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
+import {MessageService} from "../../services/message.service";
 
 @Component({
   selector: 'product-list',
@@ -19,7 +22,8 @@ export class ProductListComponent implements OnInit {
     this.updateArticles();
   }
 
-  constructor(private authService: AuthService, private articleService: ArticleService) {
+  constructor(private authService: AuthService, private articleService: ArticleService, private dialog: MatDialog,
+              private messageService: MessageService) {
   }
 
   updateArticles(category?: string) {
@@ -38,8 +42,20 @@ export class ProductListComponent implements OnInit {
   }
 
   onCategoryChange(event: string[]) {
-    console.log(event[0]);
     this.updateArticles(event[0]);
+  }
+
+  addArticle() {
+    this.dialog.open(ProductDialogComponent).afterClosed().subscribe(createdArticle => {
+      this.authService.getCurrentUser().subscribe(res => {
+        if (!res || !createdArticle) return;
+        this.articleService.createArticle(createdArticle, res).subscribe(result => {
+          this.messageService.notifyUser("Erfolgreich Erstellt!");
+          this.updateArticles();
+          this.selectedCategory = '';
+        })
+      })
+    })
   }
 
 }

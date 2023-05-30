@@ -25,6 +25,8 @@ import {registerLocaleData} from "@angular/common";
 import localeDe from '@angular/common/locales/de'
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 registerLocaleData(localeDe)
 
 @NgModule({
@@ -32,7 +34,8 @@ registerLocaleData(localeDe)
     AppComponent,
     ProductCardComponent,
     LoginComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ registerLocaleData(localeDe)
     ReactiveFormsModule,
     HttpClientModule,
     MatTooltipModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de-DE'}
