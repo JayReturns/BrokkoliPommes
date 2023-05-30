@@ -60,5 +60,8 @@ public class ArticleService implements IArticleService {
         this.articleRepository.deleteById(articleId);
     }
 
-
+    @Override
+    public List<String> getAllCategories() {
+        return articleRepository.getAllCategories();
+    }
 }

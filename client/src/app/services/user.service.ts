@@ -29,4 +29,8 @@ export class UserService {
     return this.http.get<User>(`${this.url}/${mail}`);
   }
 
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.url}/id/${id}`);
+  }
+
 }

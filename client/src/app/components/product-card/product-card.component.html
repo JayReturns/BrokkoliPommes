@@ -1,19 +1,21 @@
-<div class="content">
-<mat-card class="product-card">
+<mat-card class="product-card mat-elevation-z4">
   <mat-card-header>
-    <mat-card-title>Product 1</mat-card-title>
-    <mat-card-subtitle>Super expensive watch</mat-card-subtitle>
+    <mat-card-title>{{article?.name ?? "Fehler: Name" | titlecase}}</mat-card-title>
   </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content>
     <p>
-      This is our first product. It is super cool and I don't know what to write to fill this text. That's what Lorem
-      Ipsum is supposed to do, right?
+      {{article?.description ?? "Fehler: Beschreibung"}}
+    </p>
+    <p>
+      Kategorien:
+      {{article?.category}}
     </p>
     <mat-divider></mat-divider>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button><mat-icon>add</mat-icon></button>
+    <span>{{article?.price ?? -1 | currency:'EUR'}}</span>
+    <span class="spacer"></span>
+    <button mat-icon-button><mat-icon>add_shopping_cart</mat-icon></button>
   </mat-card-actions>
 </mat-card>
-</div>

@@ -42,4 +42,10 @@ public class UserController {
         return userService.getUser(mail);
     }
 
+    @GetMapping(path = "id/{id}")
+    @Operation(summary = "Get user by details")
+    public User getUser(@PathVariable Integer id) {
+        return userService.getUser(id);
+    }
+
 }

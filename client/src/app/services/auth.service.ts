@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {UserService} from "./user.service";
-import {Subject} from "rxjs";
+import {map, Subject} from "rxjs";
 import {Router} from "@angular/router";
 
 const USER_KEY = "appUser"
@@ -30,6 +30,13 @@ export class AuthService {
         subject.next(false);
     })
     return subject.asObservable();
+  }
+
+  public getCurrentUser() {
+    let id = localStorage.getItem(USER_KEY);
+    if (!id)
+      throw Error("User not logged in!");
+    return this.userService.getUserById(+id);
   }
 
   public isLoggedIn(): boolean {

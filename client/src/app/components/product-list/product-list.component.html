@@ -1,0 +1,30 @@
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened class="sideBar">
+    <h2 style="padding-left: 16px; padding-top: 5px">Kategorien</h2>
+    <mat-selection-list [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange($event)" [multiple]="false">
+      <mat-list-option *ngFor="let category of categories" [value]="category">
+        {{category}}
+      </mat-list-option>
+    </mat-selection-list>
+
+  </mat-drawer>
+
+  <mat-drawer-content class="mainContent">
+    <div class="content">
+      <h2>Produkte</h2>
+      <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="20%"
+             fxFlex.xs="100%"
+             fxFlex.sm="33%"
+             *ngFor="let article of articles">
+          <product-card [article]="article"></product-card>
+        </div>
+      </div>
+    </div>
+
+    <button mat-fab color="accent" class="sticky">
+      <mat-icon>add</mat-icon>
+    </button>
+
+  </mat-drawer-content>
+</mat-drawer-container>

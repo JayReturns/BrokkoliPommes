@@ -16,4 +16,6 @@ public interface IArticleService {
 
     void deleteArticle(Integer articleId);
 
+    List<String> getAllCategories();
+
 }
