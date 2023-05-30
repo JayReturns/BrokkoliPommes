@@ -16,6 +16,6 @@
   <mat-card-actions>
     <span>{{article?.price ?? -1 | currency:'EUR'}}</span>
     <span class="spacer"></span>
-    <button mat-icon-button><mat-icon>add_shopping_cart</mat-icon></button>
+    <button mat-icon-button (click)="addToCart()"><mat-icon>add_shopping_cart</mat-icon></button>
   </mat-card-actions>
 </mat-card>

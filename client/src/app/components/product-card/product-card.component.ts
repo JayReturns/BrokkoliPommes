@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Article} from "../../models/article.model";
+import {ShoppingCartService} from "../../services/shopping-cart.service";
 
 @Component({
   selector: 'product-card',
@@ -10,4 +11,10 @@ export class ProductCardComponent {
 
   @Input() article: Article | undefined;
 
+  constructor(private cartService: ShoppingCartService) {
+  }
+
+  addToCart() {
+    this.cartService.addToShoppingCart(this.article!);
+  }
 }

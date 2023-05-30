@@ -27,6 +27,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 registerLocaleData(localeDe)
 
 @NgModule({
@@ -35,7 +36,8 @@ registerLocaleData(localeDe)
     ProductCardComponent,
     LoginComponent,
     ProductListComponent,
-    ProductDialogComponent
+    ProductDialogComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
