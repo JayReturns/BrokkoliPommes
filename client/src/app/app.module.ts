@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -13,7 +13,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
@@ -21,13 +20,22 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import {MatGridListModule} from "@angular/material/grid-list";
 import { LoginComponent } from './components/login/login.component';
 import {HttpClientModule} from "@angular/common/http";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {registerLocaleData} from "@angular/common";
+import localeDe from '@angular/common/locales/de'
+import {FlexLayoutModule} from "@angular/flex-layout";
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+registerLocaleData(localeDe)
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     ProductCardComponent,
-    LoginComponent
+    LoginComponent,
+    ProductListComponent,
+    ProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +54,14 @@ import {HttpClientModule} from "@angular/common/http";
     MatListModule,
     MatGridListModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTooltipModule,
+    FlexLayoutModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'de-DE'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

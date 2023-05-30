@@ -2,6 +2,7 @@ package com.github.webeng.BrokkoliPommes.article.api;
 
 import com.github.webeng.BrokkoliPommes.article.domain.Article;
 import com.github.webeng.BrokkoliPommes.article.service.IArticleService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +45,12 @@ public class ArticleController {
     @DeleteMapping("{id}")
     public void deleteArticle(@PathVariable Integer id) {
         articleService.deleteArticle(id);
+    }
+
+    @GetMapping(path = "categories")
+    @Operation(summary = "Get All Categories")
+    public List<String> getAllCategories() {
+        return articleService.getAllCategories();
     }
 
 }
