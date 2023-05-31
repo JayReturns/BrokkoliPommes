@@ -2,6 +2,7 @@ import {Component, ElementRef} from '@angular/core';
 import {AuthService} from "./services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
+import {ShoppingCartService} from "./services/shopping-cart.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.co
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService, private dialog: MatDialog) {
+  constructor(private authService: AuthService, private dialog: MatDialog, public cartService: ShoppingCartService) {
   }
 
   logout() {
@@ -23,6 +24,14 @@ export class AppComponent {
       position: {right: '0px', top: '0px'},
       data: { trigger: target }
     });
+  }
+
+  getItemCount() {
+    const count = this.cartService.getItemCount();
+    if (count <= 9)
+      return count.toString();
+    else
+      return "9+"
   }
 
   protected readonly open = open;

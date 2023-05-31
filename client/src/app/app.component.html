@@ -5,7 +5,7 @@
     <mat-icon>person</mat-icon>
   </button>
   <button mat-icon-button (click)="openShoppingCart($event)">
-    <mat-icon>shopping_cart</mat-icon>
+    <mat-icon [matBadge]="getItemCount()" matBadgeColor="accent">shopping_cart</mat-icon>
   </button>
 </mat-toolbar>
 

@@ -28,6 +28,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import {MatBadgeModule} from "@angular/material/badge";
 registerLocaleData(localeDe)
 
 @NgModule({
@@ -39,28 +40,29 @@ registerLocaleData(localeDe)
     ProductDialogComponent,
     ShoppingCartComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    MatCardModule,
-    MatTabsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    FormsModule,
-    MatSnackBarModule,
-    MatSelectModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatGridListModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatTooltipModule,
-    FlexLayoutModule,
-    MatDialogModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        MatCardModule,
+        MatTabsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        FormsModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatListModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatTooltipModule,
+        FlexLayoutModule,
+        MatDialogModule,
+        MatBadgeModule
+    ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de-DE'}
   ],

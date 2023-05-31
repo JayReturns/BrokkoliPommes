@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Article} from "../models/article.model";
+import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +12,33 @@ export class ShoppingCartService {
   constructor() { }
 
   addToShoppingCart(article: Article) {
-    let alreadyInIt = false;
-    this.shoppingCart.filter((value) => {
-      if (value.id == article.id)
-        alreadyInIt = true;
-    });
-
-    if (!alreadyInIt) {
+    if (!this.contains(article)) {
       this.shoppingCart.push(article);
     }
     console.log(this.shoppingCart);
   }
 
+  contains(article: Article) {
+    let alreadyInIt = false;
+    this.shoppingCart.forEach((value) => {
+      if (value.id == article.id)
+        alreadyInIt = true;
+    });
+
+    return alreadyInIt;
+  }
+
   clearShoppingCart() {
     this.shoppingCart = [];
+    return this.shoppingCart;
   }
 
   getShoppingCartItems() {
     return this.shoppingCart;
+  }
+
+  getItemCount() {
+    return this.shoppingCart.length;
   }
 
 }

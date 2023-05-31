@@ -12,10 +12,16 @@
       {{article?.category}}
     </p>
     <mat-divider></mat-divider>
+    {{isInCart()}}
   </mat-card-content>
   <mat-card-actions>
     <span>{{article?.price ?? -1 | currency:'EUR'}}</span>
     <span class="spacer"></span>
-    <button mat-icon-button (click)="addToCart()"><mat-icon>add_shopping_cart</mat-icon></button>
+    <button mat-icon-button (click)="addToCart()" *ngIf="!isInCart()">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="isInCart()">
+      <mat-icon>done</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

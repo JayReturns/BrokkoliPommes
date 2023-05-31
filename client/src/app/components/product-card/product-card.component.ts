@@ -17,4 +17,9 @@ export class ProductCardComponent {
   addToCart() {
     this.cartService.addToShoppingCart(this.article!);
   }
+
+  isInCart() {
+    return this.cartService.contains(this.article!)
+  }
+
 }
