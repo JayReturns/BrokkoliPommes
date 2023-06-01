@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 import {AuthService} from "./services/auth.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
+import {ShoppingCartService} from "./services/shopping-cart.service";
 
 @Component({
   selector: 'app-root',
@@ -8,10 +11,28 @@ import {AuthService} from "./services/auth.service";
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private dialog: MatDialog, public cartService: ShoppingCartService) {
   }
 
   logout() {
     this.authService.logout();
   }
+
+  openShoppingCart(evt: MouseEvent) {
+    let target = new ElementRef(evt.currentTarget);
+    this.dialog.open(ShoppingCartComponent, {
+      position: {right: '0px', top: '0px'},
+      data: { trigger: target }
+    });
+  }
+
+  getItemCount() {
+    const count = this.cartService.getItemCount();
+    if (count <= 9)
+      return count.toString();
+    else
+      return "9+"
+  }
+
+  protected readonly open = open;
 }

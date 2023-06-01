@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  database:
+    container_name: bp-database
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: developer
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: developer
+      MYSQL_DATABASE: brokkolipommes
+    ports:
+      - "3306:3306"
