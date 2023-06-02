@@ -34,6 +34,8 @@ public class Article implements Serializable {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    @Column(name = "IMAGE", columnDefinition = "LONGTEXT")
+    private String image;
 
 
 }

@@ -22,6 +22,24 @@
     <span matTextSuffix>&nbsp;€</span>
   </mat-form-field>
 
+  <img *ngIf="hasValidImage()" [src]="imageSource">
+  <em *ngIf="!hasValidImage()">Kein Bild vorhanden</em>
+  <mat-icon
+    *ngIf="articleForm.controls.image.errors"
+    matTooltip="Ungültiges Bild"
+    matTooltipPosition="above">error_outline</mat-icon>
+  <hr />
+  <button mat-raised-button (click)="fileInput.click()">
+    Datei auswählen
+  </button>
+  <div *ngIf="imageUploaded">Datei hochgeladen</div>
+  <div class="upload-error" *ngIf="!fileTypeValid">Bild muss im JPEG-Format sein</div>
+  <div class="upload-error" *ngIf="!fileSizeValid">Bild darf max. {{maxFileSizeKB}}KB groß sein</div>
+  <input hidden (change)="uploadFile($event)" #fileInput type="file" accept=".jpeg"/>
+  <button mat-mini-fab color="warn" (click)="deleteImage()" matTooltip="Bild entfernen">
+    <mat-icon>delete</mat-icon>
+  </button>
+
   <mat-dialog-actions align="end">
     <button (click)="close()" mat-raised-button>Abbrechen</button>
     <button (click)="onSubmit()" color="primary" mat-raised-button [disabled]="!articleForm.valid">Anlegen</button>
