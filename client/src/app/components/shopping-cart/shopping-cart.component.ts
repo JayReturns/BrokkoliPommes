@@ -7,6 +7,7 @@ import {Order} from "../../models/order.model";
 import {User} from "../../models/user.model";
 import {AuthService} from "../../services/auth.service";
 import {OrderPosition} from "../../models/orderposition.model";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -23,7 +24,7 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<ShoppingCartComponent>, @Inject(MAT_DIALOG_DATA) data: {trigger: ElementRef},
               private cartService: ShoppingCartService, private orderService: OrderService,
-              private authService: AuthService) {
+              private authService: AuthService, private snackbar: MatSnackBar) {
     this.triggerElementRef = data.trigger;
     this.authService.getCurrentUser().subscribe(user => this.currentUser = user)
   }
@@ -38,7 +39,8 @@ export class ShoppingCartComponent implements OnInit {
     this.dialogRef.updatePosition(matDialogConfig.position);
 
     this.shoppingCart = this.cartService.getShoppingCartItems();
-    this.totalCost = this.cartService.getShoppingCartItems().map(x => x.price).reduce((accu, curr) => accu + curr, 0)
+    this.totalCost = this.cartService.getShoppingCartItems().map(x => x.price)
+      .reduce((accu, curr) => accu + curr, 0)
   }
   cancel(): void {
     this.dialogRef.close(null);
@@ -63,7 +65,9 @@ export class ShoppingCartComponent implements OnInit {
     console.log(order);
     this.orderService.createOrder(order, this.currentUser!).subscribe(order => {
       console.log(order);
-      // this.clearCart();
+      this.clearCart();
+      this.snackbar.open("Erfolgreich gekauft!", "OK", {duration: 3000});
+      this.cancel();
     })
   }
 

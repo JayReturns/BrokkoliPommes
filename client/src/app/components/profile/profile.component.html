@@ -1,8 +1,8 @@
-<div>
-  <mat-list>
-    <mat-list-item *ngFor="let order of orders">
-      {{order.orderId}} -- {{order.date}}
-    </mat-list-item>
-  </mat-list>
-   {{orders | json}}
-</div>
+<mat-list role="list">
+  <mat-list-item *ngFor="let order of orders" lines="3">
+    <span matListItemTitle><strong>{{order.date | date:'short'}}</strong>: {{getPriceForOrder(order) | currency:'EUR'}}</span>
+    <span>
+      {{getArticles(order)}}
+    </span>
+  </mat-list-item>
+</mat-list>

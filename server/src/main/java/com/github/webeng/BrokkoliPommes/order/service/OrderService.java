@@ -26,7 +26,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public List<Order> getAllOrdersForUser(User user) {
-        return orderRepository.getAllByUserOrderByDate(user);
+        return orderRepository.getAllByUserOrderByDateDesc(user);
     }
 
     @Override

@@ -18,10 +18,22 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.getCurrentUser().subscribe(user => {
       this.orderService.getOrdersForUser(user).subscribe(res => {
-        this.orders = res;
-        console.log(res);
-      })
+        this.orders = res
     })
+    })
+  }
+
+  getPriceForOrder(order: Order): number {
+    return order.orderPositions
+      .map(x => x.article.price * x.quantity)
+      .reduce((accu, curr) => accu + curr, 0);
+  }
+
+  getArticles(order: Order): string {
+    return order.orderPositions
+      .map(x => x.quantity + " x " + x.article.name)
+      .reduce((accu, curr) => accu + ", " + curr, "")
+      .substring(2)
   }
 
 }
