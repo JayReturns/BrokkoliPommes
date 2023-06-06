@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MatDialogRef} from "@angular/material/dialog";
 import {ArticleService} from "../../services/article.service";
 import {MessageService} from "../../services/message.service";
 import {Article} from "../../models/article.model";
-import {AuthService} from "../../services/auth.service";
+import {map, Observable, startWith} from "rxjs";
 
 @Component({
-  selector: 'app-product-dialog',
+  selector: 'product-dialog',
   templateUrl: './product-dialog.component.html',
   styleUrls: ['./product-dialog.component.css']
 })
-export class ProductDialogComponent {
+export class ProductDialogComponent implements OnInit {
 
   maxDescLength = 200;
 
@@ -28,12 +28,26 @@ export class ProductDialogComponent {
   fileTypeValid = true;
   fileSizeValid = true;
   imgSrc: string | undefined;
-
+  categories: string[] = [];
+  filteredCategories: Observable<string[]>;
 
   constructor(private dialogRef: MatDialogRef<ProductDialogComponent>,
               private articleService: ArticleService,
-              private messageService: MessageService,
-              private authService: AuthService) {
+              private messageService: MessageService) {
+    this.filteredCategories = new Observable<string[]>();
+  }
+
+  ngOnInit(): void {
+    this.filteredCategories = this.articleForm.controls.category.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.categories.filter(category => category.toLowerCase().includes(filterValue));
   }
 
   close() {

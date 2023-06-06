@@ -13,7 +13,13 @@
 
   <mat-form-field>
     <mat-label>Kategorie</mat-label>
-    <input matInput formControlName="category" placeholder="Kategorie" required>
+    <input matInput formControlName="category" required placeholder="Kategorie" [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-autocomplete>
+
   </mat-form-field>
 
   <mat-form-field floatLabel="always">
@@ -22,7 +28,7 @@
     <span matTextSuffix>&nbsp;€</span>
   </mat-form-field>
 
-  <img *ngIf="hasValidImage()" [src]="imageSource">
+  <img *ngIf="hasValidImage()" [src]="imageSource" alt="Product Image">
   <em *ngIf="!hasValidImage()">Kein Bild vorhanden</em>
   <mat-icon
     *ngIf="articleForm.controls.image.errors"
