@@ -6,6 +6,7 @@
         {{category}}
       </mat-list-option>
     </mat-selection-list>
+    <button mat-stroked-button color="warn" (click)="clearCategory()" class="center-button">Löschen</button>
 
   </mat-drawer>
 
@@ -22,7 +23,8 @@
       </div>
     </div>
 
-    <button mat-fab color="accent" class="sticky" (click)="addArticle()">
+    <button mat-fab color="accent" class="sticky" (click)="addArticle()"
+    *ngIf="isSupplier">
       <mat-icon>add</mat-icon>
     </button>
 

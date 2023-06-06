@@ -15,7 +15,7 @@
     <mat-label>Kategorie</mat-label>
     <input matInput formControlName="category" required placeholder="Kategorie" [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let category of categories" [value]="category">
+      <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
         {{category}}
       </mat-option>
     </mat-autocomplete>

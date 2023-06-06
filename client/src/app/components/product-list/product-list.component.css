@@ -29,3 +29,8 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+.center-button {
+  margin: 0 auto;
+  display: block;
+}

@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit {
   selectedCategory: string = this.categories[2];
 
   articles: Article[] = [];
+  isSupplier: boolean | undefined;
 
   ngOnInit() {
     this.updateArticles();
@@ -24,6 +25,9 @@ export class ProductListComponent implements OnInit {
 
   constructor(private authService: AuthService, private articleService: ArticleService, private dialog: MatDialog,
               private messageService: MessageService) {
+    this.authService.getCurrentUser().subscribe(res => {
+      this.isSupplier = res.isSupplier;
+    })
   }
 
   updateArticles(category?: string) {
@@ -45,11 +49,16 @@ export class ProductListComponent implements OnInit {
     this.updateArticles(event[0]);
   }
 
+  clearCategory() {
+    this.selectedCategory = '';
+    this.updateArticles();
+  }
+
   addArticle() {
     this.dialog.open(ProductDialogComponent).afterClosed().subscribe(createdArticle => {
       this.authService.getCurrentUser().subscribe(res => {
         if (!res || !createdArticle) return;
-        this.articleService.createArticle(createdArticle, res).subscribe(result => {
+        this.articleService.createArticle(createdArticle, res).subscribe(() => {
           this.messageService.notifyUser("Erfolgreich Erstellt!");
           this.updateArticles();
           this.selectedCategory = '';

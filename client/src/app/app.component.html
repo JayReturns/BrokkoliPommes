@@ -1,11 +1,12 @@
-<mat-toolbar color="primary" class="toolbar">
+<mat-toolbar color="primary" class="toolbar" *ngIf="router.url !== '/login'">
   <span>BrokkoliPommes</span>
   <span class="spacer"></span>
+  <button mat-icon-button (click)="openShoppingCart($event)">
+    <mat-icon [matBadge]="getFormattedItemCount()" matBadgeColor="accent"
+              [matBadgeHidden]="cartService.getItemCount() < 1">shopping_cart</mat-icon>
+  </button>
   <button mat-icon-button (click)="logout()" matTooltip="Logout">
     <mat-icon>person</mat-icon>
-  </button>
-  <button mat-icon-button (click)="openShoppingCart($event)">
-    <mat-icon [matBadge]="getItemCount()" matBadgeColor="accent">shopping_cart</mat-icon>
   </button>
 </mat-toolbar>
 

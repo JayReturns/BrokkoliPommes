@@ -23,18 +23,21 @@ export class ProductDialogComponent implements OnInit {
     image: new FormControl<string>('')
   });
 
-  maxFileSizeKB = 100;
+  maxFileSizeKB = 1000;
   imageUploaded = false;
   fileTypeValid = true;
   fileSizeValid = true;
   imgSrc: string | undefined;
   categories: string[] = [];
-  filteredCategories: Observable<string[]>;
+  filteredCategories: Observable<string[]> | undefined;
 
   constructor(private dialogRef: MatDialogRef<ProductDialogComponent>,
               private articleService: ArticleService,
               private messageService: MessageService) {
-    this.filteredCategories = new Observable<string[]>();
+    this.articleService.getCategories().subscribe(categories => {
+      this.categories = categories;
+      this.ngOnInit();
+    })
   }
 
   ngOnInit(): void {
@@ -46,7 +49,6 @@ export class ProductDialogComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.categories.filter(category => category.toLowerCase().includes(filterValue));
   }
 
