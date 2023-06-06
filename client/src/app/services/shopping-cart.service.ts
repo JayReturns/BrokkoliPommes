@@ -11,9 +11,11 @@ export class ShoppingCartService {
 
   constructor() { }
 
-  addToShoppingCart(article: Article) {
+  addToShoppingCart(article: Article, quantity: number) {
     if (!this.contains(article)) {
-      this.shoppingCart.push(article);
+      for (let i= 0; i<quantity; i++) {
+        this.shoppingCart.push(article);
+      }
     }
     console.log(this.shoppingCart);
   }
@@ -40,6 +42,7 @@ export class ShoppingCartService {
   getItemCount() {
     return this.shoppingCart.length;
   }
+
 
   removeFromCart(article: Article) {
     this.shoppingCart.forEach((value, index) => {
