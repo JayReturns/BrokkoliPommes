@@ -12,5 +12,5 @@ public interface IOrderService {
     List<Order> getAllOrdersForUser(User user);
     List<Order> getAllOrdersForUser(Integer userId);
 
-
+    Order createOrder(Order order, Integer userId);
 }

@@ -7,4 +7,5 @@ export interface Article {
   category: string;
   price: number;
   user?: User;
+  image: string;
 }

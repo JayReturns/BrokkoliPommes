@@ -3,6 +3,7 @@ import {AuthService} from "./services/auth.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
 import {ShoppingCartService} from "./services/shopping-cart.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,10 @@ import {ShoppingCartService} from "./services/shopping-cart.service";
 })
 export class AppComponent {
 
-  constructor(private authService: AuthService, private dialog: MatDialog, public cartService: ShoppingCartService) {
+  constructor(private authService: AuthService,
+              private dialog: MatDialog,
+              public cartService: ShoppingCartService,
+              public router: Router) {
   }
 
   logout() {
@@ -26,7 +30,7 @@ export class AppComponent {
     });
   }
 
-  getItemCount() {
+  getFormattedItemCount() {
     const count = this.cartService.getItemCount();
     if (count <= 9)
       return count.toString();
@@ -35,4 +39,5 @@ export class AppComponent {
   }
 
   protected readonly open = open;
+  protected readonly alert = alert;
 }

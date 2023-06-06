@@ -1,0 +1,8 @@
+<mat-list role="list">
+  <mat-list-item *ngFor="let order of orders" lines="3">
+    <span matListItemTitle><strong>{{order.date | date:'short'}}</strong>: {{getPriceForOrder(order) | currency:'EUR'}}</span>
+    <span>
+      {{getArticles(order)}}
+    </span>
+  </mat-list-item>
+</mat-list>

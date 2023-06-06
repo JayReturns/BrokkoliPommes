@@ -3,10 +3,7 @@ package com.github.webeng.BrokkoliPommes.order.api;
 import com.github.webeng.BrokkoliPommes.order.domain.Order;
 import com.github.webeng.BrokkoliPommes.order.service.IOrderService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,12 @@ public class OrderController {
     @GetMapping(path = "{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Order> getAllOrdersForUser(@PathVariable Integer userId) {
         return orderService.getAllOrdersForUser(userId);
+    }
+
+    @PostMapping(path = "create/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Order createOrder(@RequestBody Order order, @PathVariable Integer userId) {
+        System.out.println(order.toString());
+        return orderService.createOrder(order, userId);
     }
 
 }

@@ -10,12 +10,12 @@
 
 .sideBar {
   width: 10%;
-  background-color: whitesmoke;
+  background-color: #cfd8dc;
   min-width: 150px !important;
 }
 
 .mainContent {
-  background-color: darkgrey;
+  background-color: whitesmoke;
 }
 
 .sticky {
@@ -28,4 +28,18 @@
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.center-button {
+  margin: 0 auto;
+  display: block;
+}
+
+
+.title {
+  padding-left: 16px;
+  padding-top: 5px;
+  justify-content: center;
+  text-after-overflow: center;
+  display: flex;
 }

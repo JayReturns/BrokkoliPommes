@@ -1,23 +1,30 @@
 <h2 mat-dialog-title>Einkaufswagen</h2>
 <mat-dialog-content>
-  <mat-list role="list">
-    <div *ngFor="let item of shoppingCart">
-      <mat-list-item>
-        {{item.name | titlecase}}
-      </mat-list-item>
-      <mat-divider></mat-divider>
-    </div>
-  </mat-list>
-  <mat-divider></mat-divider>
+  <div *ngIf="totalCost == 0">
+    <p>Wow... Such Empty...</p>
+  </div>
+  <div *ngIf="totalCost != 0">
+    <mat-list role="list">
+      <div *ngFor="let item of shoppingCart">
+        <mat-list-item>
+          {{item.name | titlecase}}
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
 
-  {{totalCost | currency:'EUR'}}
+    <p style="text-align: center">
+      {{totalCost | currency:'EUR'}}
+    </p>
+  </div>
+
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-icon-button color="warn" (click)="clearCart()">
+  <button mat-icon-button color="warn" (click)="clearCart()" tabindex="-1">
     <mat-icon>delete</mat-icon>
   </button>
-  <button mat-icon-button (click)="checkout()">
+  <button mat-icon-button (click)="checkout()" tabindex="-1">
     <mat-icon>shopping_cart_checkout</mat-icon>
   </button>
 </mat-dialog-actions>

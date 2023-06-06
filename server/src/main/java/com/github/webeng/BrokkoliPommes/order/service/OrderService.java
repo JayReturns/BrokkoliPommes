@@ -26,11 +26,17 @@ public class OrderService implements IOrderService {
 
     @Override
     public List<Order> getAllOrdersForUser(User user) {
-        return orderRepository.getAllByUserOrderByDate(user);
+        return orderRepository.getAllByUserOrderByDateDesc(user);
     }
 
     @Override
     public List<Order> getAllOrdersForUser(Integer userId) {
         return getAllOrdersForUser(this.userService.getUser(userId));
+    }
+
+    @Override
+    public Order createOrder(Order order, Integer userId) {
+        order.setUser(this.userService.getUser(userId));
+        return this.orderRepository.save(order);
     }
 }

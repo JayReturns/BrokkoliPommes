@@ -42,7 +42,7 @@ export class LoginComponent {
   register() {
     let user: User = {
       companyName: this.registrationForm.controls.isSupplier.value ? this.registrationForm.controls.companyName.value : null,
-      isSupplier: false,
+      isSupplier: this.registrationForm.controls.isSupplier.value!,
       mail: this.registrationForm.controls.email.value!,
       name: this.registrationForm.controls.name.value!,
       password: this.hashPassword(this.registrationForm.controls.password.value!)

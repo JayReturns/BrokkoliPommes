@@ -2,25 +2,25 @@
   <mat-card-header>
     <mat-card-title>{{article?.name ?? "Fehler: Name" | titlecase}}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img *ngIf="imgSrc.length <= 5" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img *ngIf="imgSrc.length > 5" [src]="imgSrc">
   <mat-card-content>
     <p>
       {{article?.description ?? "Fehler: Beschreibung"}}
     </p>
     <p>
-      Kategorien:
+      Kategorie:
       {{article?.category}}
     </p>
     <mat-divider></mat-divider>
-    {{isInCart()}}
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions class="bottom">
     <span>{{article?.price ?? -1 | currency:'EUR'}}</span>
-    <span class="spacer"></span>
+<!--    <span class="spacer"></span>-->
     <button mat-icon-button (click)="addToCart()" *ngIf="!isInCart()">
       <mat-icon>add_shopping_cart</mat-icon>
     </button>
-    <button mat-icon-button *ngIf="isInCart()">
+    <button mat-icon-button *ngIf="isInCart()" (click)="remove()">
       <mat-icon>done</mat-icon>
     </button>
   </mat-card-actions>

@@ -1,12 +1,23 @@
-<mat-toolbar color="primary" class="toolbar">
-  <span>BrokkoliPommes</span>
+<mat-toolbar color="primary" class="toolbar" *ngIf="router.url !== '/login'">
+  <span routerLink="/dashboard" style="cursor: pointer">BrokkoliPommes</span>
   <span class="spacer"></span>
-  <button mat-icon-button (click)="logout()" matTooltip="Logout">
+  <button mat-icon-button (click)="openShoppingCart($event)" *ngIf="router.url === '/dashboard'">
+    <mat-icon [matBadge]="getFormattedItemCount()" matBadgeColor="accent"
+              [matBadgeHidden]="cartService.getItemCount() < 1">shopping_cart</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Profil">
     <mat-icon>person</mat-icon>
   </button>
-  <button mat-icon-button (click)="openShoppingCart($event)">
-    <mat-icon [matBadge]="getItemCount()" matBadgeColor="accent">shopping_cart</mat-icon>
-  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/profile">
+      <mat-icon>list</mat-icon>
+      <span>Profil</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+</mat-menu>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

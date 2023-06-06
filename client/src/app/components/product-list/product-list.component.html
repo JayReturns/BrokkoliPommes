@@ -1,17 +1,18 @@
 <mat-drawer-container class="container">
   <mat-drawer mode="side" opened class="sideBar">
-    <h2 style="padding-left: 16px; padding-top: 5px">Kategorien</h2>
+    <h2 class="title">Kategorien</h2>
     <mat-selection-list [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange($event)" [multiple]="false">
       <mat-list-option *ngFor="let category of categories" [value]="category">
         {{category}}
       </mat-list-option>
     </mat-selection-list>
+    <button mat-stroked-button color="warn" (click)="clearCategory()" class="center-button">Löschen</button>
 
   </mat-drawer>
 
   <mat-drawer-content class="mainContent">
+    <h1 class="title">Produkte</h1>
     <div class="content">
-      <h2>Produkte</h2>
       <div fxLayout="row wrap" fxLayoutGap="16px grid">
         <div fxFlex="20%"
              fxFlex.xs="100%"
@@ -22,7 +23,8 @@
       </div>
     </div>
 
-    <button mat-fab color="accent" class="sticky" (click)="addArticle()">
+    <button mat-fab color="accent" class="sticky" (click)="addArticle()"
+    *ngIf="isSupplier">
       <mat-icon>add</mat-icon>
     </button>
 

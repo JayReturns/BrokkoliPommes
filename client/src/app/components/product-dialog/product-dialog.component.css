@@ -24,3 +24,13 @@ input.right-align::-webkit-inner-spin-button {
 input.right-align {
   -moz-appearance: textfield;
 }
+
+.upload-error {
+  color: red;
+}
+
+section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+}
