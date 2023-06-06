@@ -33,4 +33,10 @@ public class OrderService implements IOrderService {
     public List<Order> getAllOrdersForUser(Integer userId) {
         return getAllOrdersForUser(this.userService.getUser(userId));
     }
+
+    @Override
+    public Order createOrder(Order order, Integer userId) {
+        order.setUser(this.userService.getUser(userId));
+        return this.orderRepository.save(order);
+    }
 }

@@ -20,7 +20,7 @@ public class Order implements Serializable {
     @Column(name = "ID")
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-    private String oderID;
+    private String orderID;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false, updatable = false)
@@ -29,7 +29,7 @@ public class Order implements Serializable {
     @Column(name = "date", nullable = false, updatable = false)
     private LocalDateTime date;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderPosition> orderPositions;
 
 }

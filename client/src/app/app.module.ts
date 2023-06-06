@@ -30,6 +30,8 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { ProfileComponent } from './components/profile/profile.component';
+import {MatMenuModule} from "@angular/material/menu";
 registerLocaleData(localeDe)
 
 @NgModule({
@@ -39,7 +41,8 @@ registerLocaleData(localeDe)
     LoginComponent,
     ProductListComponent,
     ProductDialogComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ProfileComponent
   ],
     imports: [
         BrowserModule,
@@ -63,7 +66,8 @@ registerLocaleData(localeDe)
         FlexLayoutModule,
         MatDialogModule,
         MatBadgeModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatMenuModule
     ],
   providers: [
     {provide: LOCALE_ID, useValue: 'de-DE'}

@@ -39,4 +39,5 @@ export class AppComponent {
   }
 
   protected readonly open = open;
+  protected readonly alert = alert;
 }

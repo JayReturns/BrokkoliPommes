@@ -2,6 +2,11 @@ import {Component, ElementRef, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {Article} from "../../models/article.model";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
+import {OrderService} from "../../services/order.service";
+import {Order} from "../../models/order.model";
+import {User} from "../../models/user.model";
+import {AuthService} from "../../services/auth.service";
+import {OrderPosition} from "../../models/orderposition.model";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -14,10 +19,13 @@ export class ShoppingCartComponent implements OnInit {
 
   shoppingCart: Article[] = [];
   totalCost = 0.0;
+  currentUser: User | undefined;
 
   constructor(private dialogRef: MatDialogRef<ShoppingCartComponent>, @Inject(MAT_DIALOG_DATA) data: {trigger: ElementRef},
-              private cartService: ShoppingCartService) {
+              private cartService: ShoppingCartService, private orderService: OrderService,
+              private authService: AuthService) {
     this.triggerElementRef = data.trigger;
+    this.authService.getCurrentUser().subscribe(user => this.currentUser = user)
   }
 
   ngOnInit() {
@@ -41,7 +49,22 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   checkout() {
-    // TODO
+    let order: Order = {
+      user: this.currentUser!,
+      date: new Date(), // new Date() = now
+      orderPositions: this.shoppingCart.map(article => {
+        let pos: OrderPosition = {
+          article: article,
+          quantity: 1
+        }
+        return pos
+      })
+    };
+    console.log(order);
+    this.orderService.createOrder(order, this.currentUser!).subscribe(order => {
+      console.log(order);
+      // this.clearCart();
+    })
   }
 
 }
