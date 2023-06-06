@@ -41,4 +41,11 @@ export class ShoppingCartService {
     return this.shoppingCart.length;
   }
 
+  removeFromCart(article: Article) {
+    this.shoppingCart.forEach((value, index) => {
+      if (value.id == article.id)
+        this.shoppingCart.splice(index, 1);
+    });
+  }
+
 }

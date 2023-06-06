@@ -1,7 +1,17 @@
 mat-card {
-  width: 200px;
+  width: 250px;
+  height: 450px;
+}
+
+img {
+  margin: 10px;
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+.bottom {
+  bottom: 0;
+  position: absolute;
 }

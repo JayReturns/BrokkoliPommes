@@ -48,6 +48,7 @@ export class ShoppingCartComponent implements OnInit {
 
   clearCart() {
     this.shoppingCart = this.cartService.clearShoppingCart();
+    this.totalCost = 0;
   }
 
   checkout() {

@@ -24,6 +24,10 @@ export class ProductCardComponent implements OnInit {
     this.cartService.addToShoppingCart(this.article!);
   }
 
+  remove() {
+    this.cartService.removeFromCart(this.article!);
+  }
+
   isInCart() {
     return this.cartService.contains(this.article!)
   }
