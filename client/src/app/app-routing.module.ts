@@ -7,9 +7,9 @@ import {ProfileComponent} from "./components/profile/profile.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: "full"},
-  {path: 'dashboard', component: ProductListComponent , canActivate: [authGuard] },
+  {path: 'dashboard', component: ProductListComponent, canActivate: [authGuard]},
   {path: 'login', component: LoginComponent },
-  {path: 'profile', component: ProfileComponent , canActivate: [authGuard] },
+  {path: 'profile', component: ProfileComponent  },
 ];
 
 @NgModule({

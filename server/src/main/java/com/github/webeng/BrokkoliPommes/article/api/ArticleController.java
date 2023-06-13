@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "article")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ArticleController {
 
     private final IArticleService articleService;
