@@ -19,8 +19,8 @@ tasks:
     name: Start Backend
   - init: |
       cd client
-      sed -i "s/{GITPOD_URL}/$(gp url 8080)/g" ./src/environments/environment.ts
-      sed -i "s/{GITPOD_URL}/$(gp url 8080)/g" ./src/environments/environment.development.ts
+      sed -i "s#{GITPOD_URL}#$(gp url 8080)#g" ./src/environments/environment.ts
+      sed -i "s#{GITPOD_URL}#$(gp url 8080)#g" ./src/environments/environment.development.ts
       npx -y -p @angular/cli ng analytics off
       npm install
     command: |
