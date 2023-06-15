@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "order")
-@CrossOrigin( origins = "http://localhost:4200")
+@CrossOrigin
 public class OrderController {
 
     private final IOrderService orderService;
