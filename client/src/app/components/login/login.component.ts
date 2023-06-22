@@ -14,7 +14,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class LoginComponent {
 
-  hide = true;
   canLogin = false;
   selectedRole: string | undefined;
 
@@ -25,7 +24,7 @@ export class LoginComponent {
 
   registrationForm = new FormGroup({
     name: new FormControl('', Validators.minLength(3)),
-    email: new FormControl('', Validators.email),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.minLength(5)),
     repeatPassword: new FormControl('', Validators.minLength(5)),
     isSupplier: new FormControl(false),
@@ -50,6 +49,7 @@ export class LoginComponent {
 
     console.log(user);
     this.userService.registerUser(user).subscribe(res => console.log(res));
+    this.snackBar.open("Registrierung erfolgreich!", "OK", {duration: 10000});
   }
 
   login() {
