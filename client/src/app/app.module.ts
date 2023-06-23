@@ -32,6 +32,7 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { ProfileComponent } from './components/profile/profile.component';
 import {MatMenuModule} from "@angular/material/menu";
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 registerLocaleData(localeDe)
 
 @NgModule({
@@ -42,7 +43,8 @@ registerLocaleData(localeDe)
     ProductListComponent,
     ProductDialogComponent,
     ShoppingCartComponent,
-    ProfileComponent
+    ProfileComponent,
+    ConfirmationDialogComponent
   ],
     imports: [
         BrowserModule,

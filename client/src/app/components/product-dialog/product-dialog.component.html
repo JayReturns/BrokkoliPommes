@@ -53,7 +53,10 @@
 
   <mat-dialog-actions align="end">
     <button (click)="close()" mat-raised-button>Abbrechen</button>
-    <button (click)="onSubmit()" [disabled]="!articleForm.valid" color="primary" mat-raised-button>Anlegen</button>
+    <button (click)="delete()" mat-stroked-button color="warn"
+            *ngIf="editMode">Löschen
+    </button>
+    <button (click)="onSubmit()" [disabled]="!articleForm.valid" color="primary" mat-raised-button>{{title | titlecase}}</button>
   </mat-dialog-actions>
 
 </mat-dialog-content>

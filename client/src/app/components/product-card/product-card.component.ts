@@ -6,6 +6,7 @@ import {ProductDialogComponent} from "../product-dialog/product-dialog.component
 import {ArticleService} from "../../services/article.service";
 import {MessageService} from "../../services/message.service";
 import {MatDialog} from "@angular/material/dialog";
+import { ProductListComponent } from '../product-list/product-list.component';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class ProductCardComponent implements OnInit {
 
   constructor(private cartService: ShoppingCartService,
               private authService: AuthService,
+              private articleService: ArticleService,
+              private productList: ProductListComponent,
               private messageService: MessageService,
               public dialog: MatDialog){
     this.authService.getCurrentUser().subscribe(res => {
@@ -36,21 +39,18 @@ export class ProductCardComponent implements OnInit {
   }
 
   editArticle() {
-    console.log((this.article?.name))
+
     this.dialog.open(ProductDialogComponent, {
       data: {
         article: this.article
       }
     }).afterClosed().subscribe(editedArticle => {
-      console.log("bearbeitet")
-      /*this.authService.getCurrentUser().subscribe(res => {
-        if (!res || !editedArticle) return;
-        this.articleService.createArticle(editedArticle, res).subscribe(() => {
-          this.messageService.notifyUser("Erfolgreich Erstellt!");
-          this.updateArticles();
-          this.selectedCategory = '';
+
+        if (!editedArticle) return;
+        this.articleService.updateArticle(editedArticle).subscribe(() => {
+            this.messageService.notifyUser("Änderung erfolgreich!");
+            this.productList.updateArticles();
         })
-      })*/
     })
   }
 
