@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "order")
+@CrossOrigin
 public class OrderController {
 
     private final IOrderService orderService;

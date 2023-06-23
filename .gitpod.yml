@@ -19,6 +19,8 @@ tasks:
     name: Start Backend
   - init: |
       cd client
+      sed -i "s#{GITPOD_URL}#$(gp url 8080)#g" ./src/environments/environment.ts
+      sed -i "s#{GITPOD_URL}#$(gp url 8080)#g" ./src/environments/environment.development.ts
       npx -y -p @angular/cli ng analytics off
       npm install
     command: |
@@ -37,6 +39,7 @@ ports:
   - port: 8080
     name: Backend
     onOpen: ignore
+    visibility: public
   # Angular
   - port: 4200
     name: Frontend
