@@ -3,7 +3,7 @@
 
   <mat-card-header>
     <mat-card-title class="left">{{article?.name ?? "Fehler: Name" | titlecase}}</mat-card-title>
-      <button mat-icon-button (click)="editArticle()" *ngIf="isSupplier">
+      <button mat-icon-button (click)="editArticle()" *ngIf="this.article?.user?.id == supplierID">
         <mat-icon>edit</mat-icon>
       </button>
   </mat-card-header>

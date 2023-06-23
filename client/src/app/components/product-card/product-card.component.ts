@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, ComponentFactoryResolver, Inject, Input, OnInit} from '@angular/core';
 import {Article} from "../../models/article.model";
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {AuthService} from "../../services/auth.service";
@@ -19,7 +19,7 @@ export class ProductCardComponent implements OnInit {
   @Input() article: Article | undefined;
   imgSrc = "";
 
-  isSupplier: boolean | undefined;
+  supplierID: number | undefined;
 
 
   constructor(private cartService: ShoppingCartService,
@@ -29,7 +29,7 @@ export class ProductCardComponent implements OnInit {
               private messageService: MessageService,
               public dialog: MatDialog){
     this.authService.getCurrentUser().subscribe(res => {
-      this.isSupplier = res.isSupplier;
+      this.supplierID = res.id;
     });
   };
 
@@ -39,7 +39,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   editArticle() {
-
+    
     this.dialog.open(ProductDialogComponent, {
       data: {
         article: this.article
