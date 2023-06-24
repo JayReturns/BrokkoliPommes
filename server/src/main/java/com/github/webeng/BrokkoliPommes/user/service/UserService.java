@@ -55,4 +55,16 @@ public class UserService implements IUserService {
     public User getUser(String mail) {
         return userRepository.findByMailIgnoreCase(mail).orElseThrow();
     }
+
+    @Override
+    public User updateUser(Integer id, User user) {
+        User userFromDB = userRepository.findById(id).orElseThrow();
+        userFromDB.setMail(user.getMail());
+        userFromDB.setPassword(user.getPassword());
+        userFromDB.setIsSupplier(user.getIsSupplier());
+        userFromDB.setCompanyName(user.getCompanyName());
+        userFromDB.setName(user.getName());
+        return userRepository.save(userFromDB);
+    }
+
 }
