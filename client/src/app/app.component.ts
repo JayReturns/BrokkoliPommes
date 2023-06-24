@@ -24,12 +24,16 @@ export class AppComponent {
               private dialog: MatDialog,
               public cartService: ShoppingCartService,
               public router: Router) {
-        //if (authService.isLoggedIn()) 
-            //this.authService.getCurrentUser().subscribe(user => this.currentuser = user);
+        this.getUserAfterLogin();
   }
 
   logout() {
     this.authService.logout();
+  }
+
+  getUserAfterLogin(){
+    if (this.authService.isLoggedIn()) 
+    this.authService.getCurrentUser().subscribe(user => this.currentuser = user);
   }
 
   openShoppingCart(evt: MouseEvent) {
@@ -48,7 +52,7 @@ export class AppComponent {
       return "9+"
   }
 
-  edit_userdata() {
+  editUser() {
     const dialogRef = this.dialog.open(UserdataDialogComponent,{
         data: {
             user: this.currentuser
@@ -60,7 +64,9 @@ export class AppComponent {
         return;
 
       console.log(result);
-      this.userService.editUser(result).subscribe(() => {})
+      this.userService.editUser(result).subscribe(() => {
+        this.getUserAfterLogin();
+      })
   })
 }
 
