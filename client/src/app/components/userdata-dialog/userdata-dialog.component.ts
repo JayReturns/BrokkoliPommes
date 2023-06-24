@@ -5,8 +5,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MessageService} from "../../services/message.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {User} from "../../models/user.model";
-import {UserService} from "../../services/user.service";
 import {AuthService} from "../../services/auth.service";
+import { sha256 } from 'js-sha256';
 
 
 @Component({
@@ -51,14 +51,19 @@ export class UserdataDialogComponent {
       this.messageService.notifyUserError();
       return;
     }
-    
+    let password:string;
+
+    if(this.userdataForm.controls['password'].value)
+        password = this.hashPassword(this.userdataForm.controls['password'].value)
+    else
+        password = this.currentuser?.password || ""
     
     const user: User = {
         id: this.currentuser?.id,
         mail: this.currentuser?.mail || "",
         name: this.userdataForm.controls['name'].value,
         companyName: this.userdataForm.controls['company'].value,
-        password: this.userdataForm.controls['password'].value || this.currentuser?.password,
+        password: password,
         isSupplier: this.currentuser?.isSupplier || false
     }
 
@@ -71,6 +76,10 @@ export class UserdataDialogComponent {
 
   close(): void {
     this.dialogRef.close();
+  }
+
+  private hashPassword(pw: string): string {
+    return sha256(pw);
   }
 
 }

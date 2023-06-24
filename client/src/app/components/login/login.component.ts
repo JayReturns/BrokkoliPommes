@@ -25,7 +25,7 @@ export class LoginComponent {
   })
 
   registrationForm = new FormGroup({
-    name: new FormControl('', Validators.minLength(3)),
+    name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.email),
     password: new FormControl('', Validators.minLength(5)),
     repeatPassword: new FormControl('', Validators.minLength(5)),

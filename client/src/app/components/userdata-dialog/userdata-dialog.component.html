@@ -13,9 +13,9 @@
     <mat-error *ngIf="userdataForm.hasError">Bitte geben Sie den Firmennamen ein</mat-error>
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field *ngIf="currentuser?.password">
     <mat-label>neues Passwort vergeben</mat-label>
-    <input matInput type="password" placeholder="neues Passwort" >
+    <input matInput type="password" placeholder="neues Passwort" formControlName="password">
     <mat-error *ngIf="userdataForm.hasError">Bitte geben Sie mindestens 5 Zeichen ein</mat-error>
   </mat-form-field>
 
