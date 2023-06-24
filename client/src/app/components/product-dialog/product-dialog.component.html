@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Artikel anlegen</h2>
+<h2 mat-dialog-title>Artikel {{title}}</h2>
 <mat-dialog-content [formGroup]="articleForm">
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
@@ -32,7 +32,7 @@
   <img *ngIf="hasValidImage()" [src]="imageSource" alt="Product Image">
   <em *ngIf="!hasValidImage()" style="text-align: center">Kein Bild vorhanden</em>
   <mat-icon
-    *ngIf="articleForm.controls.image.errors"
+    *ngIf="articleForm.controls['image'].errors"
     matTooltip="Ungültiges Bild"
     matTooltipPosition="above">error_outline
   </mat-icon>
@@ -53,7 +53,10 @@
 
   <mat-dialog-actions align="end">
     <button (click)="close()" mat-raised-button>Abbrechen</button>
-    <button (click)="onSubmit()" [disabled]="!articleForm.valid" color="primary" mat-raised-button>Anlegen</button>
+    <button (click)="delete()" mat-stroked-button color="warn"
+            *ngIf="editMode">Löschen
+    </button>
+    <button (click)="onSubmit()" [disabled]="!articleForm.valid" color="primary" mat-raised-button>{{title | titlecase}}</button>
   </mat-dialog-actions>
 
 </mat-dialog-content>
