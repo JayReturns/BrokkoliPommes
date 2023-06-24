@@ -12,4 +12,6 @@ public interface IUserService {
 
     User getUser(String mail);
 
+    User updateUser(Integer id, User user);
+
 }
