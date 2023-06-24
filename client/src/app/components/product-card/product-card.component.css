@@ -1,6 +1,6 @@
 mat-card {
   width: 250px;
-  height: 450px;
+  height: 480px;
 }
 
 img {
@@ -14,4 +14,9 @@ img {
 .bottom {
   bottom: 0;
   position: absolute;
+}
+
+.small-button{
+    width: 10px;
+    height: 10px;
 }

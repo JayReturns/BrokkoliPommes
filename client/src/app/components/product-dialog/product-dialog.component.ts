@@ -7,7 +7,6 @@ import {Article} from "../../models/article.model";
 import {map, Observable, startWith} from "rxjs";
 import {MAT_DIALOG_DATA,MatDialog} from "@angular/material/dialog";
 import { ConfirmDialogModel, ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-//import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
   selector: 'product-dialog',
@@ -16,7 +15,7 @@ import { ConfirmDialogModel, ConfirmationDialogComponent } from '../confirmation
 })
 export class ProductDialogComponent implements OnInit {
 
-  maxDescLength = 200;
+  maxDescLength = 150;
 
 
 
@@ -36,13 +35,12 @@ export class ProductDialogComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<ProductDialogComponent>,
               private articleService: ArticleService,
-              //private productList: ProductListComponent,
               private messageService: MessageService,
               private dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.article = data?.article;
     this.editMode = !!data && !!data.article;
-    this.title = `${this.editMode ? "bearbeiten" : "beantragen"}`;
+    this.title = `${this.editMode ? "bearbeiten" : "anlegen"}`;
     this.articleService.getCategories().subscribe(categories => {
       this.categories = categories;
       this.ngOnInit();
@@ -108,8 +106,7 @@ export class ProductDialogComponent implements OnInit {
         if (result) {
             if(this.article?.id){
                 this.articleService.deleteArticle(this.article?.id).subscribe(() => {
-                    this.messageService.notifyUser("Artikel erfolgreich entfernt!");
-                   // this.productList.updateArticles();
+                   this.messageService.notifyUser("Artikel erfolgreich entfernt!");
                    this.dialogRef.close();
                 })
             }
