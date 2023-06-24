@@ -6,6 +6,7 @@ import {ShoppingCartService} from "./services/shopping-cart.service";
 import {Router} from "@angular/router";
 import { UserdataDialogComponent } from './components/userdata-dialog/userdata-dialog.component';
 import {User} from "./models/user.model";
+import { UserService } from './services/user.service';
 import {authGuard} from "./guards/auth.guard";
 
 
@@ -19,11 +20,12 @@ export class AppComponent {
   currentuser: User | undefined;
 
   constructor(private authService: AuthService,
+              private userService: UserService,
               private dialog: MatDialog,
               public cartService: ShoppingCartService,
               public router: Router) {
         //if (authService.isLoggedIn()) 
-            this.authService.getCurrentUser().subscribe(user => this.currentuser = user);
+            //this.authService.getCurrentUser().subscribe(user => this.currentuser = user);
   }
 
   logout() {
@@ -57,7 +59,8 @@ export class AppComponent {
       if (!result)
         return;
 
-      //this.userServie.editUser(result).subscribe(() => {})
+      console.log(result);
+      this.userService.editUser(result).subscribe(() => {})
   })
 }
 

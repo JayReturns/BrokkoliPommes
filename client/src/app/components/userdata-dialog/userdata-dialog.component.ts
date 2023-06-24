@@ -21,28 +21,28 @@ export class UserdataDialogComponent {
   userdataForm: FormGroup = new FormGroup<any>({});
   currentuser: User | undefined;
 
-  constructor(private formBuilder: FormBuilder,
-              private userService: UserService,
-              private messageService: MessageService,
+  constructor(private messageService: MessageService,
               private dialogRef: MatDialogRef<UserdataDialogComponent>,
-              private dialog: MatDialog,
               private authService: AuthService,
               @Inject(MAT_DIALOG_DATA) public data: any) {
-    //this.authService.getCurrentUser().subscribe(user2 => this.currentuser = user2);
-    this.currentuser = data?.user;
+    this.authService.getCurrentUser().subscribe(user => {
+        this.currentuser = user;
+        this.initializeForm();
+    });
+    //this.currentuser = data?.user;
     console.log(this.currentuser?.name);
-    setTimeout(() => {  this.currentuser?.name }, 3000);
-    this.initializeForm();
+    
   }
+
+  
 
   initializeForm() {
     console.log(this.currentuser?.id);
     this.userdataForm = new FormGroup({
-      //userId: new FormControl<number | null>(this.user?.id || null),
-      name: new FormControl<string | null>(this.currentuser?.name || null, [Validators.required, Validators.minLength(3)]),
-      newPassword: new FormControl<string | null>('', Validators.minLength(5)),
-      oldPassword: new FormControl<string | null>('', Validators.minLength(5)),
-      company: new FormControl<string | null>(this.currentuser?.companyName || null, Validators.required)
+      userId: new FormControl<number | null>(this.currentuser?.id || null),
+      name: new FormControl<string | null>(this.currentuser?.name || null, Validators.required),
+      password: new FormControl<string | null>('', Validators.minLength(5)),
+      company: new FormControl<string | null>(this.currentuser?.companyName || 'Kunde', Validators.required)
     });
   }
 
@@ -51,17 +51,20 @@ export class UserdataDialogComponent {
       this.messageService.notifyUserError();
       return;
     }
-    console.log(this.currentuser?.id);
-    console.log(this.currentuser?.name);
-    console.log(this.currentuser?.password);
-    /*
+    
+    
     const user: User = {
-        id: this.userdataForm.controls['id'].value || undefined,
-        name: this.userdataForm.controls['environmentType'].value,
-        password: this.userdataForm.controls['comment'].value || "",
-        mail: '',
-        isSupplier: false
-    }*/
+        id: this.currentuser?.id,
+        mail: this.currentuser?.mail || "",
+        name: this.userdataForm.controls['name'].value,
+        companyName: this.userdataForm.controls['company'].value,
+        password: this.userdataForm.controls['password'].value || this.currentuser?.password,
+        isSupplier: this.currentuser?.isSupplier || false
+    }
+
+    console.log(user);
+
+    this.dialogRef.close(user);
 
   }
 
