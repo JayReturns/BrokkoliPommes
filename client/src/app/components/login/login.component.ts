@@ -26,9 +26,9 @@ export class LoginComponent {
     name: new FormControl('', Validators.minLength(3)),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.minLength(5)),
-    repeatPassword: new FormControl('', Validators.minLength(5)),
+    repeatPassword: new FormControl('', Validators.minLength(100)),
     isSupplier: new FormControl(false),
-    companyName: new FormControl('')
+    companyName: new FormControl('',Validators.required)
   })
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router,
