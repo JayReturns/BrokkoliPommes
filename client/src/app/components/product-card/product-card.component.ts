@@ -45,7 +45,7 @@ export class ProductCardComponent implements OnInit {
         article: this.article
       }
     }).afterClosed().subscribe(editedArticle => {
-
+        this.productList.updateArticles();
         if (!editedArticle) return;
         this.articleService.updateArticle(editedArticle).subscribe(() => {
             this.messageService.notifyUser("Änderung erfolgreich!");
