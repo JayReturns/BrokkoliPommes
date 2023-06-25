@@ -1,7 +1,10 @@
 mat-card {
   width: 250px;
   height: 450px;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
+
 
 img {
   margin: 10px;

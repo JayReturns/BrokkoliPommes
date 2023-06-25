@@ -25,6 +25,10 @@ export class UserService {
     return this.http.post<User>(`${this.url}/login`, user);
   }
 
+  editUser(user: User) {
+    return this.http.put<User>(`${this.url}/update/${user.id}`, user);
+  }
+
   getUser(mail: string): Observable<User> {
     return this.http.get<User>(`${this.url}/${mail}`);
   }

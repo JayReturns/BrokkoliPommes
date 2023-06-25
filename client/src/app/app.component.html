@@ -1,6 +1,9 @@
 <mat-toolbar color="primary" class="toolbar" *ngIf="router.url !== '/login'">
   <span routerLink="/dashboard" style="cursor: pointer">BrokkoliPommes</span>
   <span class="spacer"></span>
+  <span class="padding">
+  Hallo {{currentuser?.name}}
+  </span>
   <button mat-icon-button (click)="openShoppingCart($event)" *ngIf="router.url === '/dashboard'">
     <mat-icon [matBadge]="getFormattedItemCount()" matBadgeColor="accent"
               [matBadgeHidden]="cartService.getItemCount() < 1">shopping_cart</mat-icon>
@@ -13,6 +16,10 @@
       <mat-icon>list</mat-icon>
       <span>Profil</span>
     </button>
+    <button mat-menu-item (click)="editUser()">
+        <mat-icon>account_circle</mat-icon>
+        <span>Benutzerdaten</span>
+      </button>
     <button mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon>
       <span>Logout</span>

@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Benutzerdaten bearbeiten</h2>
+<mat-dialog-content [formGroup]="userdataForm">
+
+  <mat-form-field *ngIf="currentuser?.name">
+    <mat-label>Name</mat-label>
+    <input matInput type="string" placeholder="Benutzername" formControlName="name" required>
+    <mat-error *ngIf="userdataForm.hasError">Bitte geben Sie einen Nutzernamen ein</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="currentuser?.isSupplier">
+    <mat-label>Firma</mat-label>
+    <input matInput type="string" placeholder="Firmenname" formControlName="company" required>
+    <mat-error *ngIf="userdataForm.hasError">Bitte geben Sie den Firmennamen ein</mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="currentuser?.password">
+    <mat-label>neues Passwort vergeben</mat-label>
+    <input matInput type="password" placeholder="neues Passwort" formControlName="password">
+    <mat-error *ngIf="userdataForm.hasError">Bitte geben Sie mindestens 5 Zeichen ein</mat-error>
+  </mat-form-field>
+
+  <mat-dialog-actions align="end">
+    <button (click)="close()" mat-raised-button>Abbrechen</button>
+
+    <button (click)="onSubmit()" color="primary" mat-raised-button
+            [disabled]="!userdataForm.valid">Ändern</button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>
