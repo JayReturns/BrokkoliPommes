@@ -17,12 +17,8 @@ img {
 }
 
 .p_card {
-    width: 35%;
-    height: 80px;
+    width: 80px;
     padding-left: 5%;
-    padding-right: 5%;
+    margin-top: 20px;
 }
-.add_shopping_cart_button {
-    position: relative;
-    margin-right: -100px;
-}
+
