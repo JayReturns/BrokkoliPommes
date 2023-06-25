@@ -14,8 +14,7 @@ export class ShoppingCartService {
   constructor() { }
 
   addToShoppingCart(article: Article, quantity: number) {
-    if (!this.contains(article) || this.sCart.some((subarray) => subarray.some((obj) => obj === article.name))) {
-        this.sCart.push([article, quantity])
+    if (!this.contains(article)) {
       for (let i= 0; i<quantity; i++) {
         this.shoppingCart.push(article);
       }
@@ -34,49 +33,33 @@ export class ShoppingCartService {
 
   clearShoppingCart() {
     this.shoppingCart = [];
-    this.clearSC();
     return this.shoppingCart;
   }
 
-  clearSC(){
-    this.sCart = [];
-    return this.sCart;
-  }
 
   getShoppingCartItems() {
     return this.shoppingCart;
   }
 
-  getSCartItems(){
-    return this.sCart;
-  }
 
   getItemCount() {
     return this.shoppingCart.length;
   }
 
 
+
+
   removeFromCart(article: Article) {
     /*this.shoppingCart.forEach((value, index) => {
       if (value.id == article.id)
-        this.shoppingCart.splice(index, 1);
+        this.shoppingCart.splice(index);
     });*/
 
-    // The upper code just halves the amount of selected object in the product card and doesn't just discard everything related to it.
+    // The upper code was only deleting articles from array bit by bit from clicking. Main purpose was to delete all files
+    // related to each other though. Splicing is very deprecated for such methods therefore we handle it per filtering.
 
-    for(let k = 0; k<this.sCart.length; k++){
-        if(this.shoppingCart[k].id == article.id){
-            this.shoppingCart.splice(k,1);
-        }
-    }
-
-    for(let i = 0; i<this.sCart.length; i++){
-        for(let j = 0; j<this.sCart[i].length; j++){
-            if(this.sCart[i][j] == article.name){
-                this.sCart[i].splice(j, 1);
-            }
-        }
-    }
+    let newarray = this.shoppingCart.filter(a => a !== article)
+    this.shoppingCart = newarray;
   }
 
 }

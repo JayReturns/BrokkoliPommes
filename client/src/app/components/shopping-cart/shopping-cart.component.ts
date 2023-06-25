@@ -19,7 +19,6 @@ export class ShoppingCartComponent implements OnInit {
   private readonly triggerElementRef: ElementRef;
 
   shoppingCart: Article[] = [];
-  sCart: string[][] = [];
   totalCost = 0.0;
   currentUser: User | undefined;
 
@@ -40,7 +39,6 @@ export class ShoppingCartComponent implements OnInit {
     this.dialogRef.updatePosition(matDialogConfig.position);
 
     this.shoppingCart = this.cartService.getShoppingCartItems();
-    this.sCart = this.cartService.getSCartItems();
     this.totalCost = this.cartService.getShoppingCartItems().map(x => x.price)
       .reduce((accu, curr) => accu + curr, 0)
   }
