@@ -3,9 +3,6 @@
 
   <mat-card-header>
     <mat-card-title class="left">{{article?.name ?? "Fehler: Name" | titlecase}}</mat-card-title>
-      <button class="small-button" mat-icon-button (click)="editArticle()" *ngIf="this.article?.user?.id == supplierID" matTooltip="Artikel bearbeiten">
-        <mat-icon>edit</mat-icon>
-      </button>
   </mat-card-header>
 
 
@@ -29,6 +26,9 @@
     </button>
     <button mat-icon-button *ngIf="isInCart()" (click)="remove()" matTooltip="Aus Warenkorb entfernen">
       <mat-icon>done</mat-icon>
+    </button>
+    <button mat-icon-button (click)="editArticle()" *ngIf="this.article?.user?.id == supplierID" matTooltip="Artikel bearbeiten">
+        <mat-icon>edit</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>
