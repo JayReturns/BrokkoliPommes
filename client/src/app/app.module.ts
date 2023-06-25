@@ -46,7 +46,7 @@ registerLocaleData(localeDe)
     ProductDialogComponent,
     ShoppingCartComponent,
     ProfileComponent,
-    UserdataDialogComponent
+    UserdataDialogComponent,
     ConfirmationDialogComponent
   ],
     imports: [
