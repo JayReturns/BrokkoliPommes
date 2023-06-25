@@ -50,14 +50,6 @@ export class ShoppingCartService {
 
 
   removeFromCart(article: Article) {
-    /*this.shoppingCart.forEach((value, index) => {
-      if (value.id == article.id)
-        this.shoppingCart.splice(index);
-    });*/
-
-    // The upper code was only deleting articles from array bit by bit from clicking. Main purpose was to delete all files
-    // related to each other though. Splicing is very deprecated for such methods therefore we handle it per filtering.
-
     let newarray = this.shoppingCart.filter(a => a !== article)
     this.shoppingCart = newarray;
   }
