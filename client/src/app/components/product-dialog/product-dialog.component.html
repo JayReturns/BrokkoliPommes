@@ -4,7 +4,7 @@
     <mat-label>Name</mat-label>
     <input formControlName="name" matInput placeholder="Artikelname" required>
     <mat-error *ngIf="articleForm.controls['name'].hasError('required')">Bitte geben Sie einen Artikelnamen ein</mat-error>
-    <mat-error *ngIf="articleForm.controls['name'].hasError">Artikelname ist auf 40 Zeichen begrenzt</mat-error>
+    <mat-error *ngIf="articleForm.controls['name'].hasError">Artikelname ist auf 36 Zeichen begrenzt</mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -31,6 +31,7 @@
   <mat-form-field floatLabel="always">
     <mat-label>Preis</mat-label>
     <input class="right-align" formControlName="price" matInput min="0.01" type="number">
+    <mat-error *ngIf="articleForm.controls['price'].hasError">Nur Preise von 0,01€ bis 999.999,99€ erlaubt</mat-error>
     <span matTextSuffix>&nbsp;€</span>
   </mat-form-field>
 

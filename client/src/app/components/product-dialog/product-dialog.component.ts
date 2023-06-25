@@ -59,10 +59,10 @@ export class ProductDialogComponent implements OnInit {
 
   initializeForm() {
     this.articleForm = new FormGroup({
-      name: new FormControl<string | null>(this.article?.name || null, [Validators.required,Validators.maxLength(40)]),
+      name: new FormControl<string | null>(this.article?.name || null, [Validators.required,Validators.maxLength(36)]),
       description: new FormControl<string | null>(this.article?.description || null, Validators.maxLength(this.maxDescLength)),
       category: new FormControl<string | null>(this.article?.category || null, Validators.maxLength(18)),
-      price: new FormControl<number | null>(this.article?.price || null, [Validators.required, Validators.min(0.01)]),
+      price: new FormControl<number | null>(this.article?.price || null, [Validators.required, Validators.min(0.01), Validators.max(999999.99)]),
       image: new FormControl<string | null>(this.article?.image || null)
     });
   }

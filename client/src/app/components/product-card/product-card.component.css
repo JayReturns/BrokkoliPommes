@@ -1,6 +1,6 @@
 mat-card {
   width: 250px;
-  height: 490px;
+  height: 520px;
   overflow: hidden;
   text-overflow: ellipsis; 
 }
@@ -21,7 +21,7 @@ img {
 
 
 .p_card {
-    width: 80px;
-    padding-left: 5%;
+    width: 68px;
+    padding-left: 4px;
     margin-top: 20px;
 }
