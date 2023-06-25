@@ -29,15 +29,12 @@ export class UserdataDialogComponent {
         this.currentuser = user;
         this.initializeForm();
     });
-    //this.currentuser = data?.user;
-    console.log(this.currentuser?.name);
     
   }
 
   
 
   initializeForm() {
-    console.log(this.currentuser?.id);
     this.userdataForm = new FormGroup({
       userId: new FormControl<number | null>(this.currentuser?.id || null),
       name: new FormControl<string | null>(this.currentuser?.name || null, Validators.required),
