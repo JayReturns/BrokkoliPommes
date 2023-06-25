@@ -6,3 +6,5 @@
 ---
 
 Testdaten sind im Ordner `dummy-data` erhalten
+<br>
+Durch einen durch den GitPod verursachten Fehler kann es sein, dass das Backend erneut gestartet werden muss, wenn ein Fehler im Backend-Tab auftritt. Zur Behebung genügt es, den Prozess mit CTRL+C zu terminieren und erneut auszuführen. Dies kann durch einen Druck auf die Pfeiltaste nach oben und einem Bestätigen mit Enter getan werden.
