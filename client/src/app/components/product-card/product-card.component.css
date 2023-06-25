@@ -1,6 +1,6 @@
 mat-card {
   width: 250px;
-  height: 450px;
+  height: 480px;
   overflow: hidden;
   text-overflow: ellipsis; 
 }
@@ -18,3 +18,4 @@ img {
   bottom: 0;
   position: absolute;
 }
+

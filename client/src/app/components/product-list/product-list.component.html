@@ -2,11 +2,11 @@
   <mat-drawer mode="side" opened class="sideBar">
     <h2 class="title">Kategorien</h2>
     <mat-selection-list [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange($event)" [multiple]="false">
-      <mat-list-option *ngFor="let category of categories" [value]="category">
+      <mat-list-option *ngFor="let category of categories" [value]="category" matTooltip="{{category}}">
         {{category}}
       </mat-list-option>
     </mat-selection-list>
-    <button mat-stroked-button color="warn" (click)="clearCategory()" class="center-button">Löschen</button>
+    <button mat-stroked-button color="warn" (click)="clearCategory()" class="center-button">Filter löschen</button>
 
   </mat-drawer>
 
@@ -24,7 +24,7 @@
     </div>
 
     <button mat-fab color="accent" class="sticky" (click)="addArticle()"
-    *ngIf="isSupplier">
+    *ngIf="isSupplier" matTooltip="Neue Artikel anlegen">
       <mat-icon>add</mat-icon>
     </button>
 
