@@ -15,3 +15,14 @@ img {
   bottom: 0;
   position: absolute;
 }
+
+.p_card {
+    width: 35%;
+    height: 80px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.add_shopping_cart_button {
+    position: relative;
+    margin-right: -100px;
+}

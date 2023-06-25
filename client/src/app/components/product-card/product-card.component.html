@@ -17,7 +17,7 @@
   <mat-card-actions class="bottom">
     <span>{{article?.price ?? -1 | currency:'EUR'}}</span>
 <!--    <span class="spacer"></span>-->
-    <mat-form-field>
+    <mat-form-field class = "p_card">
       <mat-label>Quantity!</mat-label>
       <mat-select [(value)]="selected">
         <mat-option value=1>1</mat-option>
@@ -32,7 +32,7 @@
         <mat-option value=10>10</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-icon-button (click)="addToCart()" *ngIf="!isInCart()">
+    <button mat-icon-button (click)="addToCart()" *ngIf="!isInCart()" class="add_shopping_cart_button">
       <mat-icon>add_shopping_cart</mat-icon>
     </button>
     <button mat-icon-button *ngIf="isInCart()" (click)="remove()">
