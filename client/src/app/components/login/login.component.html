@@ -73,7 +73,8 @@
               <mat-error *ngIf="!canLogin">Passwörter stimmen nicht überein</mat-error>
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
-            <button type="submit" [disabled]="!canLogin && !registrationForm.errors" color="primary" mat-button>Registrieren</button>
+            <button type="submit" [disabled]="!canLogin || (registrationForm.controls.isSupplier.value! == true && registrationForm.controls.companyName.value! == '')" 
+                color="primary" mat-button>Registrieren</button>
           </form>
 
         </mat-tab>
