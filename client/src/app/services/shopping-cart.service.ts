@@ -9,14 +9,13 @@ export class ShoppingCartService {
 
   shoppingCart: Article[] = [];
 
-  sCart: string[][] = [] 
+  sCart: any[][] = [] 
 
   constructor() { }
 
   addToShoppingCart(article: Article, quantity: number) {
-    let quantity_string = quantity.toString()
     if (!this.contains(article) || this.sCart.some((subarray) => subarray.some((obj) => obj === article.name))) {
-        this.sCart.push([article.name, quantity_string])
+        this.sCart.push([article, quantity])
       for (let i= 0; i<quantity; i++) {
         this.shoppingCart.push(article);
       }
