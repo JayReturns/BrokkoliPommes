@@ -4,10 +4,10 @@ BrokkoliPommes
 ## Functions
 - [X] user registration
 - [X] user login
-- [ ] profile administration (change name, address, passwort etc.)
+- [x] profile administration (change name, address, passwort etc.)
 - [x] users can choose different articles
 - [x] users can buy articles
-- [ ] admins can upload/edit articles
+- [x] admins can upload/edit articles
 - [X] articles are categorized
 - [x] shopping card
 - [x] users can see their last purchases
@@ -15,11 +15,11 @@ BrokkoliPommes
 
 Optional (at least 4):
 - [ ] rating system for articles
-- [x] Registration for different suppliers
-- [X] Suppliers can upload their articles
-- [ ] Suppliers can edit their articles
-- [ ] users can see supplier information in articles
-- [ ] Suppliers can see their sells
+- [x] registration for different suppliers
+- [X] suppliers can upload their articles
+- [x] suppliers can edit their articles
+- [x] users can see supplier information in articles
+- [ ] suppliers can see their sells
 - [ ] wishlist - (notifying user when there are reduced prices)
 - [x] images for articles
 
