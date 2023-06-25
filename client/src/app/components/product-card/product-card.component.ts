@@ -17,6 +17,7 @@ import { ProductListComponent } from '../product-list/product-list.component';
 export class ProductCardComponent implements OnInit {
 
   @Input() article: Article | undefined;
+  selected = 1
   imgSrc = "";
 
   supplierID: number | undefined;
@@ -55,7 +56,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addToShoppingCart(this.article!);
+    this.cartService.addToShoppingCart(this.article!, this.selected!);
   }
 
   remove() {
@@ -67,3 +68,6 @@ export class ProductCardComponent implements OnInit {
   }
 
 }
+
+
+

@@ -24,7 +24,22 @@
   </mat-card-content>
   <mat-card-actions class="bottom">
     <span>{{article?.price ?? -1 | currency:'EUR'}}</span>
-<!--    <span class="spacer"></span>-->
+
+    <mat-form-field class = "p_card">
+      <mat-select [(value)]="selected">
+        <mat-option value=1>1</mat-option>
+        <mat-option value=2>2</mat-option>
+        <mat-option value=3>3</mat-option>
+        <mat-option value=4>4</mat-option>
+        <mat-option value=5>5</mat-option>
+        <mat-option value=6>6</mat-option>
+        <mat-option value=7>7</mat-option>
+        <mat-option value=8>8</mat-option>
+        <mat-option value=9>9</mat-option>
+        <mat-option value=10>10</mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <button mat-icon-button (click)="addToCart()" *ngIf="!isInCart()" matTooltip="In Warenkorb legen">
       <mat-icon>add_shopping_cart</mat-icon>
     </button>

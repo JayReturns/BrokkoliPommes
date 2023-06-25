@@ -9,13 +9,16 @@ export class ShoppingCartService {
 
   shoppingCart: Article[] = [];
 
+  sCart: any[][] = [] 
+
   constructor() { }
 
-  addToShoppingCart(article: Article) {
+  addToShoppingCart(article: Article, quantity: number) {
     if (!this.contains(article)) {
-      this.shoppingCart.push(article);
+      for (let i= 0; i<quantity; i++) {
+        this.shoppingCart.push(article);
+      }
     }
-    console.log(this.shoppingCart);
   }
 
   contains(article: Article) {
@@ -33,19 +36,22 @@ export class ShoppingCartService {
     return this.shoppingCart;
   }
 
+
   getShoppingCartItems() {
     return this.shoppingCart;
   }
+
 
   getItemCount() {
     return this.shoppingCart.length;
   }
 
+
+
+
   removeFromCart(article: Article) {
-    this.shoppingCart.forEach((value, index) => {
-      if (value.id == article.id)
-        this.shoppingCart.splice(index, 1);
-    });
+    let newarray = this.shoppingCart.filter(a => a !== article)
+    this.shoppingCart = newarray;
   }
 
 }

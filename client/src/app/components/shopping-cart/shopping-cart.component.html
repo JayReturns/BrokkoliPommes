@@ -7,14 +7,14 @@
     <mat-list role="list">
       <div *ngFor="let item of shoppingCart">
         <mat-list-item>
-          {{item.name | titlecase}}
+          {{item.name | titlecase}}, Kosten: {{item.price.toString() | titlecase}} €
         </mat-list-item>
         <mat-divider></mat-divider>
       </div>
     </mat-list>
 
-    <p style="text-align: center">
-      {{totalCost | currency:'EUR'}}
+    <p >
+     Gesamtbetrag: <strong>{{totalCost | currency:'EUR'}}</strong>
     </p>
   </div>
 
