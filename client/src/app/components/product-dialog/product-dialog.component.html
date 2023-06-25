@@ -1,20 +1,25 @@
-<h2 mat-dialog-title>Artikel anlegen</h2>
+<h2 mat-dialog-title>Artikel {{title}}</h2>
 <mat-dialog-content [formGroup]="articleForm">
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
     <input formControlName="name" matInput placeholder="Artikelname" required>
+    <mat-error *ngIf="articleForm.controls['name'].hasError('required')">Bitte geben Sie einen Artikelnamen ein</mat-error>
+    <mat-error *ngIf="articleForm.controls['name'].hasError">Artikelname ist auf 40 Zeichen begrenzt</mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Beschreibung</mat-label>
     <textarea #desc [maxLength]="maxDescLength" formControlName="description" matInput placeholder="Beschreibung"
               required></textarea>
+    <mat-error *ngIf="articleForm.controls['description'].hasError">Bitte geben Sie eine Beschreibung ein</mat-error>
     <mat-hint align="end">{{desc.value.length}}/{{maxDescLength}}</mat-hint>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Kategorie</mat-label>
     <input [matAutocomplete]="auto" formControlName="category" matInput placeholder="Kategorie" required>
+    <mat-error *ngIf="articleForm.controls['category'].hasError('required')">Bitte wählen Sie eine Kategorie</mat-error>
+    <mat-error *ngIf="articleForm.controls['category'].hasError">Kategorie ist auf 18 Zeichen begrenzt</mat-error>
     <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
       <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
         {{category}}
@@ -32,7 +37,7 @@
   <img *ngIf="hasValidImage()" [src]="imageSource" alt="Product Image">
   <em *ngIf="!hasValidImage()" style="text-align: center">Kein Bild vorhanden</em>
   <mat-icon
-    *ngIf="articleForm.controls.image.errors"
+    *ngIf="articleForm.controls['image'].errors"
     matTooltip="Ungültiges Bild"
     matTooltipPosition="above">error_outline
   </mat-icon>
@@ -53,7 +58,10 @@
 
   <mat-dialog-actions align="end">
     <button (click)="close()" mat-raised-button>Abbrechen</button>
-    <button (click)="onSubmit()" [disabled]="!articleForm.valid" color="primary" mat-raised-button>Anlegen</button>
+    <button (click)="delete()" mat-stroked-button color="warn"
+            *ngIf="editMode">Löschen
+    </button>
+    <button (click)="onSubmit()" [disabled]="!articleForm.valid" color="primary" mat-raised-button>{{title | titlecase}}</button>
   </mat-dialog-actions>
 
 </mat-dialog-content>

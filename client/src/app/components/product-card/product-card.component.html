@@ -1,21 +1,30 @@
 <mat-card class="product-card mat-elevation-z4">
+
+
   <mat-card-header>
-    <mat-card-title>{{article?.name ?? "Fehler: Name" | titlecase}}</mat-card-title>
+    <mat-card-title class="left">{{article?.name ?? "Fehler: Name" | titlecase}}</mat-card-title>
   </mat-card-header>
-  <img *ngIf="imgSrc.length <= 5" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+
+  <img *ngIf="imgSrc.length <= 5" mat-card-image src="../../../assets/default.jpeg">
   <img *ngIf="imgSrc.length > 5" [src]="imgSrc">
   <mat-card-content>
     <p>
       {{article?.description ?? "Fehler: Beschreibung"}}
     </p>
     <p>
-      Kategorie:
+      <u>Kategorie:</u>
       {{article?.category}}
     </p>
+    <p>
+        <u>Lieferant:</u>
+        {{article?.user?.companyName}}
+      </p>
     <mat-divider></mat-divider>
   </mat-card-content>
   <mat-card-actions class="bottom">
     <span>{{article?.price ?? -1 | currency:'EUR'}}</span>
+
     <mat-form-field class = "p_card">
       <mat-select [(value)]="selected">
         <mat-option value=1>1</mat-option>
@@ -30,11 +39,15 @@
         <mat-option value=10>10</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-icon-button (click)="addToCart()" *ngIf="!isInCart()">
+
+    <button mat-icon-button (click)="addToCart()" *ngIf="!isInCart()" matTooltip="In Warenkorb legen">
       <mat-icon>add_shopping_cart</mat-icon>
     </button>
-    <button mat-icon-button *ngIf="isInCart()" (click)="remove()">
+    <button mat-icon-button *ngIf="isInCart()" (click)="remove()" matTooltip="Aus Warenkorb entfernen">
       <mat-icon>done</mat-icon>
+    </button>
+    <button mat-icon-button (click)="editArticle()" *ngIf="this.article?.user?.id == supplierID" matTooltip="Artikel bearbeiten">
+        <mat-icon>edit</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>

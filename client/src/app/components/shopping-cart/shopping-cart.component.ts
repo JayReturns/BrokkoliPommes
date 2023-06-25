@@ -64,6 +64,10 @@ export class ShoppingCartComponent implements OnInit {
       })
     };
     console.log(order);
+    if(order.orderPositions.length == 0){
+        this.snackbar.open("Warenkorb ist leer!", "OK", {duration: 3000});
+        return
+    }
     this.orderService.createOrder(order, this.currentUser!).subscribe(order => {
       console.log(order);
       this.clearCart();

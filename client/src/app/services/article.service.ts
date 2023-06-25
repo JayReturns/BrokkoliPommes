@@ -36,7 +36,7 @@ export class ArticleService {
   }
 
   public deleteArticle(id: number) {
-    this.http.delete(`${this.url}/${id}`).subscribe();
+    return this.http.delete(`${this.url}/${id}`);
   }
 
   public getCategories() {

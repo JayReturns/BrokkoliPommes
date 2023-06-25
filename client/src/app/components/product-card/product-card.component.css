@@ -1,7 +1,10 @@
 mat-card {
   width: 250px;
-  height: 450px;
+  height: 490px;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
+
 
 img {
   margin: 10px;
@@ -16,9 +19,9 @@ img {
   position: absolute;
 }
 
+
 .p_card {
     width: 80px;
     padding-left: 5%;
     margin-top: 20px;
 }
-

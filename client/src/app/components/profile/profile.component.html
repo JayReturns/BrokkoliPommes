@@ -1,6 +1,8 @@
+<h1><strong>Bestellhistorie</strong></h1>
+
 <mat-list role="list">
   <mat-list-item *ngFor="let order of orders" lines="3">
-    <span matListItemTitle><strong>{{order.date | date:'short'}}</strong>: {{getPriceForOrder(order) | currency:'EUR'}}</span>
+    <span matListItemTitle><strong>{{order.date | date:'short'}} (UTC)</strong>: {{getPriceForOrder(order) | currency:'EUR'}}</span>
     <span>
       {{getArticles(order)}}
     </span>

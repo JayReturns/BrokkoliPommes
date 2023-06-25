@@ -1,0 +1,15 @@
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    max-width: 500px;
+  }
+  
+  mat-form-field {
+    margin: 16px;
+  }
+  
+  button {
+    margin: 5px;
+  }
+  

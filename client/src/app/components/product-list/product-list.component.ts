@@ -59,7 +59,7 @@ export class ProductListComponent implements OnInit {
       this.authService.getCurrentUser().subscribe(res => {
         if (!res || !createdArticle) return;
         this.articleService.createArticle(createdArticle, res).subscribe(() => {
-          this.messageService.notifyUser("Erfolgreich Erstellt!");
+          this.messageService.notifyUser("Artikel erfolgreich angelegt!");
           this.updateArticles();
           this.selectedCategory = '';
         })
