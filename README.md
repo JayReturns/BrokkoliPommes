@@ -3,4 +3,6 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10840817&assignment_repo_type=AssignmentRepo)
 <br>
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/DHBW-Vilas/21ai2-webeng-II-brokkolipommes)
+---
 
+Testdaten sind im Ordner `dummy-data` erhalten
