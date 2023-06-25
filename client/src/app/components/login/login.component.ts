@@ -6,6 +6,7 @@ import {UserService} from "../../services/user.service";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent {
   })
 
   registrationForm = new FormGroup({
-    name: new FormControl('', Validators.minLength(3)),
+    name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.minLength(5)),
     repeatPassword: new FormControl('', Validators.minLength(100)),
@@ -31,7 +32,7 @@ export class LoginComponent {
     companyName: new FormControl('',Validators.required)
   })
 
-  constructor(private userService: UserService, private authService: AuthService, private router: Router,
+  constructor(private userService: UserService, private authService: AuthService, private router: Router, private app:AppComponent,
               private snackBar: MatSnackBar) {
     this.registrationForm.valueChanges.subscribe(x =>  {
       this.canLogin = this.registrationForm.controls.password.value == this.registrationForm.controls.repeatPassword.value;
@@ -60,6 +61,7 @@ export class LoginComponent {
     this.authService.login(user).subscribe(validCredentials => {
       console.log(`Valid: ${validCredentials}`);
       if (validCredentials) {
+        this.app.getUserAfterLogin();
         this.router.navigate(['dashboard']);
       } else {
         this.snackBar.open("Benutzername oder Passwort falsch!", "", {duration: 10000})

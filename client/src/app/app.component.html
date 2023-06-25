@@ -3,6 +3,10 @@
   <span class="img"><img mat-card-image src="../../../assets/logo_klein.jpg"></span>
   <span class="spacer"></span>
   <button mat-icon-button (click)="openShoppingCart($event)" *ngIf="router.url === '/dashboard'" matTooltip="Warenkorb">
+  <span class="padding">
+  Hallo {{currentuser?.name}}
+  </span>
+  <button mat-icon-button (click)="openShoppingCart($event)" *ngIf="router.url === '/dashboard'">
     <mat-icon [matBadge]="getFormattedItemCount()" matBadgeColor="accent"
               [matBadgeHidden]="cartService.getItemCount() < 1">shopping_cart</mat-icon>
   </button>
@@ -17,6 +21,10 @@
       <mat-icon>list</mat-icon>
       <span>Bestellhistorie</span>
     </button>
+    <button mat-menu-item (click)="editUser()">
+        <mat-icon>account_circle</mat-icon>
+        <span>Benutzerdaten</span>
+      </button>
     <button mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon>
       <span>Logout</span>

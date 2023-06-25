@@ -13,9 +13,13 @@
       {{article?.description ?? "Fehler: Beschreibung"}}
     </p>
     <p>
-      Kategorie:
+      <u>Kategorie:</u>
       {{article?.category}}
     </p>
+    <p>
+        <u>Lieferant:</u>
+        {{article?.user?.companyName}}
+      </p>
     <mat-divider></mat-divider>
   </mat-card-content>
   <mat-card-actions class="bottom">
