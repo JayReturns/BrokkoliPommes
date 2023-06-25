@@ -1,10 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialogRef} from "@angular/material/dialog";
 import {ArticleService} from "../../services/article.service";
 import {MessageService} from "../../services/message.service";
 import {Article} from "../../models/article.model";
 import {map, Observable, startWith} from "rxjs";
+import {MAT_DIALOG_DATA,MatDialog} from "@angular/material/dialog";
+import { ConfirmDialogModel, ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+//import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
   selector: 'product-dialog',
@@ -15,13 +18,7 @@ export class ProductDialogComponent implements OnInit {
 
   maxDescLength = 200;
 
-  articleForm = new FormGroup({
-    name: new FormControl<string>(''),
-    description: new FormControl<string>('', Validators.maxLength(this.maxDescLength)),
-    category: new FormControl<string>(''),
-    price: new FormControl<number>(0, Validators.min(0.01)),
-    image: new FormControl<string>('')
-  });
+
 
   maxFileSizeKB = 1000;
   imageUploaded = false;
@@ -31,20 +28,45 @@ export class ProductDialogComponent implements OnInit {
   categories: string[] = [];
   filteredCategories: Observable<string[]> | undefined;
 
+  articleForm: FormGroup = new FormGroup<any>({});
+  article: Article | null;
+  title: string;
+  editMode: boolean;
+
+
   constructor(private dialogRef: MatDialogRef<ProductDialogComponent>,
               private articleService: ArticleService,
-              private messageService: MessageService) {
+              //private productList: ProductListComponent,
+              private messageService: MessageService,
+              private dialog: MatDialog,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.article = data?.article;
+    this.editMode = !!data && !!data.article;
+    this.title = `${this.editMode ? "bearbeiten" : "beantragen"}`;
     this.articleService.getCategories().subscribe(categories => {
       this.categories = categories;
       this.ngOnInit();
-    })
+    });
+    this.initializeForm();
   }
 
+
   ngOnInit(): void {
-    this.filteredCategories = this.articleForm.controls.category.valueChanges.pipe(
+    this.filteredCategories = this.articleForm.controls['category'].valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
     );
+  }
+
+
+  initializeForm() {
+    this.articleForm = new FormGroup({
+      name: new FormControl<string | null>(this.article?.name || null),
+      description: new FormControl<string | null>(this.article?.description || null, Validators.maxLength(this.maxDescLength)),
+      category: new FormControl<string | null>(this.article?.category || null),
+      price: new FormControl<number | null>(this.article?.price || null, [Validators.required, Validators.min(0.01)]),
+      image: new FormControl<string | null>(this.article?.image || null)
+    });
   }
 
   private _filter(value: string): string[] {
@@ -61,16 +83,39 @@ export class ProductDialogComponent implements OnInit {
       this.messageService.notifyUserError()
       return;
     }
-    const article: Article = {
-      name: this.articleForm.controls.name.value!,
-      description: this.articleForm.controls.description.value!,
-      category: this.articleForm.controls.category.value!,
-      price: this.articleForm.controls.price.value!,
-      image: this.articleForm.controls.image.value!
+    const editedArticle: Article = {
+      id: this.article?.id,
+      name: this.articleForm.controls['name'].value!,
+      description: this.articleForm.controls['description'].value!,
+      category: this.articleForm.controls['category'].value!,
+      price: this.articleForm.controls['price'].value!,
+      image: this.articleForm.controls['image'].value!
     }
 
-    this.dialogRef.close(article);
+    this.dialogRef.close(editedArticle);
 
+  }
+
+
+  delete() {
+    const message = "Soll der Artikel '" + this.article?.name + "' wirklich gelöscht werden?"
+
+    const dialogDate = new ConfirmDialogModel(this.article?.name + " löschen", message);
+
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: dialogDate
+    }).afterClosed().subscribe((result: any) => {
+        if (result) {
+            if(this.article?.id){
+                this.articleService.deleteArticle(this.article?.id).subscribe(() => {
+                    this.messageService.notifyUser("Artikel erfolgreich entfernt!");
+                   // this.productList.updateArticles();
+                   this.dialogRef.close();
+                })
+            }
+        }
+      }
+    )
   }
 
   uploadFile(event: any) {
@@ -91,7 +136,7 @@ export class ProductDialogComponent implements OnInit {
 
         reader.onload = () => {
           this.imgSrc = (reader.result as string).replace(/data:image\/.+;base64,/i, "");
-          this.articleForm.controls.image.setValue(this.imgSrc);
+          this.articleForm.controls['image'].setValue(this.imgSrc);
           this.imageUploaded = true;
         }
       }
@@ -99,15 +144,15 @@ export class ProductDialogComponent implements OnInit {
   }
 
   hasValidImage() : boolean {
-    return isValidBase64(this.articleForm.controls.image.value) && atob(this.articleForm.controls.image.value!.toString()) != '0';
+    return isValidBase64(this.articleForm.controls['image'].value) && atob(this.articleForm.controls['image'].value!.toString()) != '0';
   }
 
   deleteImage() {
-    this.articleForm.controls.image.setValue("");
+    this.articleForm.controls['image'].setValue("");
   }
 
   get imageSource(): string {
-    return `data:image/jpeg;base64,${this.articleForm.controls.image?.value}`;
+    return `data:image/jpeg;base64,${this.articleForm.controls['image']?.value}`;
   }
 
 }

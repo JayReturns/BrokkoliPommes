@@ -1,3 +1,3 @@
 export const environment = {
-  baseApiUrl: "{GITPOD_URL}/api/v1"
-};
+    baseApiUrl: "{GITPOD_URL}/api/v1"
+  };

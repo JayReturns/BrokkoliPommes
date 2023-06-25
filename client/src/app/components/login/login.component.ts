@@ -15,7 +15,6 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class LoginComponent {
 
-  hide = true;
   canLogin = false;
   selectedRole: string | undefined;
 
@@ -26,11 +25,11 @@ export class LoginComponent {
 
   registrationForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.email),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.minLength(5)),
-    repeatPassword: new FormControl('', Validators.minLength(5)),
+    repeatPassword: new FormControl('', Validators.minLength(100)),
     isSupplier: new FormControl(false),
-    companyName: new FormControl('')
+    companyName: new FormControl('',Validators.required)
   })
 
   constructor(private userService: UserService, private authService: AuthService, private router: Router, private app:AppComponent,
@@ -51,6 +50,7 @@ export class LoginComponent {
 
     console.log(user);
     this.userService.registerUser(user).subscribe(res => console.log(res));
+    this.snackBar.open("Registrierung erfolgreich!", "OK", {duration: 10000});
   }
 
   login() {

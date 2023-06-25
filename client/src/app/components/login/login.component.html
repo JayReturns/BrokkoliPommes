@@ -13,15 +13,17 @@
 
             <mat-form-field class="full-width">
               <mat-label>Email</mat-label>
-              <input [email]="true" formControlName="email" matInput placeholder="max@mustermann.de" type="email">
+              <input [email]="true" formControlName="email" matInput placeholder="max@mustermann.de" type="email" required="true">
+              <mat-error *ngIf="loginForm.hasError('required','email')">Bitte geben Sie Ihre Email-Adresse ein</mat-error>
+              <mat-error *ngIf="loginForm.controls.email && !loginForm.hasError('required','email')">Keine gültige Email-Adresse</mat-error>
             </mat-form-field>
 
             <mat-form-field class="full-width">
               <mat-label>Passwort</mat-label>
-              <input formControlName="password" matInput placeholder="Passwort" type="password">
-              <button (click)="hide = ! hide" mat-icon-button matSuffix>
-                <mat-icon matSuffix>{{hide ? 'vpn_key' : 'vpn_key_off'}}vpn_key</mat-icon>
-              </button>
+              <input formControlName="password" matInput placeholder="Passwort" type="password" required="true" (keydown.enter)="login()">
+              <mat-error *ngIf="loginForm.controls.password">Bitte geben Sie Ihr Passwort ein</mat-error>
+
+              <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
 
             <button color="primary" mat-button type="submit">Anmelden</button>
@@ -34,12 +36,16 @@
           <form (ngSubmit)="register()" [formGroup]="registrationForm">
             <mat-form-field class="full-width">
               <mat-label>Email</mat-label>
-              <input matInput placeholder="max@mustermann.de" [email]="true" type="email" formControlName="email">
+              <input matInput placeholder="max@mustermann.de" [email]="true" type="email" formControlName="email" required="true">
+              <mat-error *ngIf="registrationForm.controls.email">Bitte geben Sie eine gültige Email-Adresse ein</mat-error>
             </mat-form-field>
+
             <mat-form-field class="full-width">
               <mat-label>Name</mat-label>
-              <input matInput placeholder="Max Mustermann" type="text" formControlName="name">
+              <input matInput placeholder="Max Mustermann" type="text" formControlName="name" required="true">
+              <mat-error *ngIf="registrationForm.controls.name">Bitte geben Sie Ihren Namen ein</mat-error>
             </mat-form-field>
+
             <mat-form-field class="full-width">
               <mat-label>Registrieren als</mat-label>
               <mat-select value="customer" formControlName="isSupplier">
@@ -47,19 +53,24 @@
                 <mat-option [value]="true">Lieferant</mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="full-width" *ngIf="registrationForm.controls.isSupplier.value">
+
+            <mat-form-field class="full-width" *ngIf="registrationForm.controls.isSupplier.value" required="true">
               <mat-label>Firma</mat-label>
               <input matInput placeholder="Firma" type="text" formControlName="companyName">
+              <mat-error *ngIf="registrationForm.controls.companyName">Bitte geben Sie Ihren Firmennamen ein</mat-error>
             </mat-form-field>
+
             <mat-form-field class="full-width">
               <mat-label>Passwort</mat-label>
-              <input matInput placeholder="Passwort" type="password" formControlName="password" minlength="5">
-              <mat-hint>Mindestens 5 Zeichen</mat-hint>
+              <input matInput placeholder="Passwort" type="password" formControlName="password" minlength="5" required="true">
+              <mat-error *ngIf="registrationForm.controls.password">Passwort muss mindestens 5 Zeichen lang sein</mat-error>
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
+
             <mat-form-field class="full-width">
               <mat-label>Passwort Wiederholen</mat-label>
-              <input matInput placeholder="Passwort wiederholen" type="password" formControlName="repeatPassword">
+              <input matInput placeholder="Passwort wiederholen" type="password" formControlName="repeatPassword" required="true">
+              <mat-error *ngIf="!canLogin">Passwörter stimmen nicht überein</mat-error>
               <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>
             <button type="submit" [disabled]="!canLogin && !registrationForm.errors" color="primary" mat-button>Registrieren</button>
